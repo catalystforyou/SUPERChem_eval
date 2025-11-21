@@ -1,0 +1,7 @@
+Multiple-Choice Question:
+
+{question}
+
+{options}
+
+First conduct step-by-step reasoning, then provide the answer. Your response should end in `The answer is $\boxed{<single-uppercase-letter>}$.`.
