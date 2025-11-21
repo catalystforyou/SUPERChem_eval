@@ -74,8 +74,8 @@ If you use CCMEBench or this evaluation framework in your research, please cite 
 
 ```bibtex
 @article{ccmebench2025,
-  title={{CCMEBench: A Benchmark for Deep Chemical Reasoning in Large Language Models}},
-  author={Your Name and Co-authors},
+  title={{CCMEBench: An Olympiad-level Multimodal Benchmark for Evaluating Deep Chemical Reasoning in Large Language Models}},
+  author={Zehua Zhao and Zhixian Huang and Junren Li and Siyu Lin and Junting Zhou and Fengqi Cao and Kun Zhou and Rui Ge and Yuexiang Zhu and Yan Liu and Jie Zheng and Junnian Wei and Rong Zhu and Peng Zou and Wenyu Li and Zekai Cheng and Tian Ding and Yaxuan Wang and Yizhao Yan and Tingru Wei and Haowei Ming and Weijie Mao and Chen Sun and Yiming Liu and Zichen Wang and Zuo Zhang and Tong Yang and Hao Ma and Zhen Gao and Jian Pei},
   journal={Journal/Conference Name},
   year={2025}
 }
