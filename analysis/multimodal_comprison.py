@@ -173,8 +173,15 @@ if __name__ == "__main__":
             print(results_df[['Model', 'Input Type', 'Correct', 'Total', 'Accuracy (%)']].to_string(index=False))
 
             # 6. Plot a comparison bar chart (modified)
-            plt.style.use('seaborn-v0_8-whitegrid')
-            fig, ax = plt.subplots(figsize=(10, 7))
+            # Set global plotting style, mimicking the provided example
+            plt.rcParams.update({
+                'font.size': 18,
+                'axes.linewidth': 2,
+                'xtick.major.width': 2,
+                'ytick.major.width': 2,
+                'xtick.major.size': 6,
+                'ytick.major.size': 6,
+            })
             
             # --- CHANGE 3: Set global font to Arial ---
             try:
@@ -182,6 +189,8 @@ if __name__ == "__main__":
                 print("\nSetting plot font to Arial.")
             except RuntimeError:
                 print("\nArial font not found. Using default font.")
+
+            fig, ax = plt.subplots(figsize=(12, 8)) # Slightly larger canvas
             
             # --- CHANGE 2: Determine the order of the bars ---
             # Sort by Multimodal performance from high to low
@@ -191,9 +200,10 @@ if __name__ == "__main__":
 
             colors = {'Text-Only': '#014f86', 'Multimodal': '#ff6a00'}
             
-            # Use the order parameter in the plotting function
+            # Use the order parameter in the plotting function, add borders
             sns.barplot(data=results_df, x='Model', y='Accuracy (%)', hue='Input Type', 
-                        palette=colors, ax=ax, order=model_order)
+                        palette=colors, ax=ax, order=model_order,
+                        edgecolor='black', linewidth=1.5)
             
             # Add value labels on the bar chart
             for p in ax.patches:
@@ -201,32 +211,46 @@ if __name__ == "__main__":
                 if height > 0:
                     ax.annotate(f'{height:.1f}', 
                                 (p.get_x() + p.get_width() / 2., height), 
-                                ha='center', va='bottom', xytext=(0, 5), 
-                                textcoords='offset points', fontsize=14, weight='bold')
+                                ha='center', va='bottom', xytext=(0, 8), 
+                                textcoords='offset points', fontsize=18, color='black')
 
-            # ax.set_title(f'Performance on Multimodal-Essential Subset ({total_questions} Release Questions)', fontsize=16, pad=20)
+            # Set axis labels and title
             ax.set_xlabel(None)
-            ax.set_ylabel('pass@1 Accuracy (%)', fontsize=14)
-            ax.set_ylim(0, max(50, results_df['Accuracy (%)'].max() * 1.15)) # Slightly increase top space
+            ax.set_ylabel('pass@1 Accuracy (%)', fontsize=24, labelpad=15, color='black')
+            
+            # Set axis limits and format
+            ax.set_ylim(0, max(50, results_df['Accuracy (%)'].max() * 1.15))
             ax.yaxis.set_major_formatter(plt.FuncFormatter('{:.0f}%'.format))
             
-            # Rotate x-axis labels to avoid overlap
-            plt.xticks(rotation=45, ha='right', fontsize=14)
+            # Set tick labels font
+            plt.xticks(rotation=45, ha='right', fontsize=20, color='black')
+            plt.yticks(fontsize=20, color='black')
             
-            ax.tick_params(axis='x', labelsize=12)
-            ax.tick_params(axis='y', labelsize=10)
-            ax.legend(title='Input Type', fontsize=14, title_fontsize=12)
+            # Set legend
+            ax.legend(title='Input Type', fontsize=18, title_fontsize=20, 
+                      frameon=True, edgecolor='black', fancybox=False)
             
+            # Ensure borders on all sides (Top and Right spines)
+            for spine in ax.spines.values():
+                spine.set_visible(True)
+                spine.set_color('black')
+                spine.set_linewidth(2)
+
+            # Grid settings (Keep only horizontal grid, below the plot)
+            ax.grid(False) # Turn off default grid first
+            ax.yaxis.grid(True, linestyle='-', alpha=0.3, color='gray', zorder=0)
+            ax.set_axisbelow(True)
+
             plt.tight_layout()
             
             # --- CHANGE 1: Save as PNG and PDF simultaneously ---
             png_output_filename = 'results/textonly_subset_comparison.png'
             pdf_output_filename = 'results/textonly_subset_comparison.pdf'
             
-            plt.savefig(png_output_filename, dpi=300)
+            plt.savefig(png_output_filename, dpi=300, bbox_inches='tight')
             print(f"\nComparison plot saved as '{png_output_filename}'")
             
-            plt.savefig(pdf_output_filename)
+            plt.savefig(pdf_output_filename, bbox_inches='tight')
             print(f"Comparison plot also saved as '{pdf_output_filename}'")
 
             plt.close(fig)

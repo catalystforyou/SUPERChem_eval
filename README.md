@@ -1,18 +1,18 @@
-# CCMEBench: A Benchmark for Deep Chemical Reasoning in Large Language Models
+# SUPERChem: A Multimodal Reasoning Benchmark in Chemistry
 
-This repository contains the official evaluation framework for **CCMEBench**, an expert-curated, Olympiad-level multimodal benchmark for the rigorous evaluation of deep chemical reasoning in Large Language Models (LLMs) and Multimodal LLMs (MLLMs).
+This repository contains the official evaluation framework for **SUPERChem**, an expert-curated, reasoning-intensive multimodal benchmark for the rigorous evaluation of deep chemical reasoning in Large Language Models (LLMs) and Multimodal LLMs (MLLMs).
 
 ---
 
 ## Abstract
 
-Current benchmarks for evaluating the chemical reasoning capabilities of Large Language Models (LLMs) are limited by oversimplified tasks, ceiling effects, lack of process-level evaluation, and misalignment with expert-level chemistry skills. To address these issues, we introduce **CCMEBench**, a benchmark of 500 expert-curated chemistry problems at Olympiad-level difficulty, covering diverse subfields and provided in both multimodal and text-only formats. Original content and an iterative curation pipeline eliminate flawed items and mitigate data contamination. Each problem is paired with an expert-authored solution path, enabling *Reasoning Path Fidelity* (RPF) scoring to evaluate reasoning quality beyond final-answer accuracy. Evaluations against a human baseline of 40.3% accuracy show that even the best-performing model, GPT-5 (High), reaches only 38.5%. By combining high difficulty, controlled multimodality, and process-level metrics, CCMEBench provides a rigorous platform for diagnosing and advancing AI chemical reasoning toward expert-level scientific inquiry.
+Current benchmarks for evaluating the chemical reasoning capabilities of Large Language Models (LLMs) are limited by oversimplified tasks, ceiling effects, lack of process-level evaluation, and misalignment with expert-level chemistry skills. To address these issues, we introduce **SUPERChem**, a benchmark of 500 expert-curated reasoning-intensive chemistry problems, covering diverse subfields and provided in both multimodal and text-only formats. Original content and an iterative curation pipeline eliminate flawed items and mitigate data contamination. Each problem is paired with an expert-authored solution path, enabling *Reasoning Path Fidelity* (RPF) scoring to evaluate reasoning quality beyond final-answer accuracy. Evaluations against a human baseline of 40.3% accuracy show that even the best-performing model, GPT-5 (High), reaches only 38.5%. By combining high difficulty, controlled multimodality, and process-level metrics, SUPERChem provides a rigorous platform for diagnosing and advancing AI chemical reasoning toward expert-level scientific inquiry.
 
 ---
 
 ## Key Features
 
--   **Expert-Level Challenge**: 500 Olympiad-level problems curated by domain experts to test deep chemical reasoning and mitigate the ceiling effects seen in other benchmarks.
+-   **Expert-Level Challenge**: 500 reasoning-intensive problems curated by domain experts to test deep chemical reasoning and mitigate the ceiling effects seen in other benchmarks.
 -   **Process-Level Evaluation**: Introduces **Reasoning Path Fidelity (RPF)**, a metric to assess the alignment of a model's reasoning with expert-authored solution paths, distinguishing genuine understanding from "lucky guesses."
 -   **Controlled Multimodality**: Each problem is available in both multimodal (with images) and text-only formats, enabling a rigorous, controlled analysis of a model's ability to integrate visual information.
 -   **Fine-Grained Ability Taxonomy**: A systematic categorization of chemical knowledge and reasoning skills supports detailed diagnosis of model strengths and weaknesses across various sub-domains.
@@ -22,7 +22,7 @@ Current benchmarks for evaluating the chemical reasoning capabilities of Large L
 
 ## Repository Structure
 
-This repository provides the tools to run evaluations on the CCMEBench dataset.
+This repository provides the tools to run evaluations on the SUPERChem dataset.
 
 ```
 .
@@ -70,12 +70,12 @@ A typical evaluation workflow follows these steps:
 
 ## Citation
 
-If you use CCMEBench or this evaluation framework in your research, please cite our paper:
+If you use SUPERChem or this evaluation framework in your research, please cite our paper:
 
 ```bibtex
-@article{ccmebench2025,
-  title={{CCMEBench: An Olympiad-level Multimodal Benchmark for Evaluating Deep Chemical Reasoning in Large Language Models}},
-  author={Zehua Zhao and Zhixian Huang and Junren Li and Siyu Lin and Junting Zhou and Fengqi Cao and Kun Zhou and Rui Ge and Yuexiang Zhu and Yan Liu and Jie Zheng and Junnian Wei and Rong Zhu and Peng Zou and Wenyu Li and Zekai Cheng and Tian Ding and Yaxuan Wang and Yizhao Yan and Tingru Wei and Haowei Ming and Weijie Mao and Chen Sun and Yiming Liu and Zichen Wang and Zuo Zhang and Tong Yang and Hao Ma and Zhen Gao and Jian Pei},
+@article{superchem2025,
+  title={{SUPERChem: A Multimodal Reasoning Benchmark in Chemistry}},
+  author={Zehua Zhao, Zhixian Huang, Junren Li, Siyu Lin, Junting Zhou, Fengqi Cao, Kun Zhou, Rui Ge, Yuexiang Zhu, Yan Liu, Jie Zheng, Junnian Wei, Rong Zhu, Peng Zou, Wenyu Li, Zekai Cheng, Tian Ding, Yaxuan Wang, Yizhao Yan, Tingru Wei, Haowei Ming, Weijie Mao, Chen Sun, Yiming Liu, Zichen Wang, Zuo Zhang, Tong Yang, Hao Ma, Zhen Gao and Jian Pei},
   journal={Journal/Conference Name},
   year={2025}
 }

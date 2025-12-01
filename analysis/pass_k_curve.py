@@ -172,27 +172,42 @@ def plot_pass_k_evolution(pass_k_df):
         style='Pretty Model',
         markers=True,
         dashes=False,
-        lw=3.0, # Made lines slightly thicker
-        markersize=12, # Made markers larger
+        lw=4.0, # Made lines thicker
+        markersize=14, # Made markers larger
         ax=ax
     )
         
     # --- MODIFICATION: Formatting and Styling with larger fonts ---
     # ax.set_title("SOTA Model Performance with Multiple Attempts on CCMEBench", fontsize=26, pad=25, weight='bold')
-    ax.set_xlabel("Number of Attempts (k)", fontsize=20, labelpad=15)
-    ax.set_ylabel("pass@k Accuracy (%)", fontsize=20, labelpad=15)
+    ax.set_xlabel("Number of Attempts (k)", fontsize=28, labelpad=15, weight='bold')
+    ax.set_ylabel("pass@k Accuracy (%)", fontsize=28, labelpad=15, weight='bold')
     
     ax.set_xticks(K_VALUES_TO_CALCULATE)
-    ax.set_xticklabels(K_VALUES_TO_CALCULATE, fontsize=18)
+    ax.set_xticklabels(K_VALUES_TO_CALCULATE, fontsize=24, weight='bold')
     
     ax.set_ylim(0, 105)
     ax.yaxis.set_major_formatter(plt.FuncFormatter('{:.0f}%'.format))
-    ax.tick_params(axis='y', labelsize=18)
+    ax.tick_params(axis='y', labelsize=24)
+    
+    # Thicken ticks and spines
+    ax.tick_params(width=2.5, length=8)
+    for spine in ['left', 'bottom', 'top', 'right']:
+        ax.spines[spine].set_linewidth(2.5)
+        ax.spines[spine].set_color('black')
     
     # Get legend handle and apply larger fonts
-    legend = ax.legend(title='Model', fontsize=16, title_fontsize=18)
+    legend = ax.legend(
+        title='Model', 
+        fontsize=20, 
+        title_fontsize=22,
+        frameon=True,       # Enable frame
+        framealpha=1.0,     # Opaque background to cover lines
+        edgecolor='black',  # Black border color
+        facecolor='white'   # White background color
+    )
+    legend.get_frame().set_linewidth(1.5) # Thicker border for the "card" look
     plt.setp(legend.get_texts(), fontname='Arial') # Explicitly set legend text font
-    plt.setp(legend.get_title(), fontname='Arial') # Explicitly set legend title font
+    plt.setp(legend.get_title(), fontname='Arial', weight='bold') # Explicitly set legend title font
     
     plt.tight_layout()
     

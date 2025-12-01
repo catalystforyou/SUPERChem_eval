@@ -152,7 +152,7 @@ def plot_combined_radar_plotly(sub_scores, models_to_plot, descriptions, palette
         rows=2, cols=2,
         specs=[[{'type': 'polar'}, {'type': 'polar'}],
                [{'type': 'polar'}, {'type': 'polar'}]],
-        subplot_titles=[descriptions.get(str(i), f"Category {i}") for i in range(1, 5)],
+        subplot_titles=[f"<b>{descriptions.get(str(i), f'Category {i}')}</b>" for i in range(1, 5)],
         vertical_spacing=0.2, # Increase vertical spacing
         horizontal_spacing=0.
     )
@@ -191,8 +191,30 @@ def plot_combined_radar_plotly(sub_scores, models_to_plot, descriptions, palette
                 fill='none',
                 showlegend=(i == 0),
                 name=model_name_clean,
-                line=dict(color=color, width=4)
+                line=dict(color=color, width=6)
             ), row=row, col=col)
+
+    # Define common polar style settings
+    polar_style = dict(
+        bgcolor='white',
+        radialaxis=dict(
+            range=[0, 101],
+            tickvals=[25, 50, 75, 100],
+            tickfont=dict(size=24, family="Arial Black", color="black"),
+            gridcolor="#B0B0B0",
+            gridwidth=3,
+            layer='below traces'
+        ),
+        angularaxis=dict(
+            tickfont=dict(size=30),
+            gridcolor="#B0B0B0",
+            gridwidth=3,
+            layer='below traces',
+            linecolor="#B0B0B0",
+            linewidth=3,
+            showline=True
+        )
+    )
 
     fig.update_layout(
         font_family="Arial",
@@ -200,31 +222,23 @@ def plot_combined_radar_plotly(sub_scores, models_to_plot, descriptions, palette
         plot_bgcolor='white',
         height=2200,
         width=3000,
-        margin=dict(t=180, b=20, l=0, r=0),
+        margin=dict(t=180, b=250, l=0, r=0),
         legend=dict(
             orientation="h",
             # MODIFICATION 3: Further lower the legend position
-            yanchor="bottom", y=-0.15,
+            yanchor="bottom", y=-0.12,
             xanchor="center", x=0.5,
-            font=dict(family="Arial", size=40)
+            font=dict(family="Arial", size=48, color="black"),
+            bgcolor="white",
+            bordercolor="black",
+            borderwidth=2,
+            itemwidth=100
         ),
         # Unify the style of all subplots
-        polar=dict(
-            radialaxis=dict(range=[0, 100], tickvals=[25, 50, 75], tickfont=dict(size=14), gridcolor="#d4dbe2"),
-            angularaxis=dict(tickfont=dict(size=30), gridcolor="#d4dbe2")
-        ),
-        polar2=dict(
-            radialaxis=dict(range=[0, 100], tickvals=[25, 50, 75], tickfont=dict(size=14), gridcolor="#d4dbe2"),
-            angularaxis=dict(tickfont=dict(size=30), gridcolor="#d4dbe2")
-        ),
-        polar3=dict(
-            radialaxis=dict(range=[0, 100], tickvals=[25, 50, 75], tickfont=dict(size=14), gridcolor="#d4dbe2"),
-            angularaxis=dict(tickfont=dict(size=30), gridcolor="#d4dbe2")
-        ),
-        polar4=dict(
-            radialaxis=dict(range=[0, 100], tickvals=[25, 50, 75], tickfont=dict(size=14), gridcolor="#d4dbe2"),
-            angularaxis=dict(tickfont=dict(size=30), gridcolor="#d4dbe2")
-        )
+        polar=polar_style,
+        polar2=polar_style,
+        polar3=polar_style,
+        polar4=polar_style
     )
     for annotation in fig.layout.annotations:
         annotation.font.size = 42
@@ -253,6 +267,25 @@ if __name__ == "__main__":
     if sub_category_scores is None or sub_category_scores.empty:
         print("No sub-category scores were generated. Cannot create radar charts.")
     else:
+        print("\n--- Sub-category Scores ---")
+        df_print = sub_category_scores.reset_index(name='score')
+        unique_tags = df_print['ability_tag'].unique()
+        try:
+            unique_tags = sorted(unique_tags, key=lambda t: [int(x) if x.isdigit() else x for x in t.split(' ')[0].split('.')])
+        except:
+            unique_tags = sorted(unique_tags)
+
+        for tag in unique_tags:
+            desc = ability_descriptions.get(tag, tag)
+            print(f"\n[Ability] {tag}: {desc}")
+            tag_data = df_print[df_print['ability_tag'] == tag].sort_values(by=['model', 'multimodal'])
+            for _, row in tag_data.iterrows():
+                model_name = row['model']
+                is_mm = row['multimodal']
+                score_val = row['score']
+                mode_str = "Multimodal" if is_mm else "Text-only"
+                print(f"  - {model_name} ({mode_str}): {score_val:.2f}")
+
         print("\n--- Generating Combined Plotly Radar Chart ---")
         # Use a more vibrant color palette
         palette = pcolors.qualitative.T10
@@ -276,9 +309,6 @@ if __name__ == "__main__":
                 # Save as PDF (vector image)
                 fig.write_image(pdf_out)
                 print(f"[output] Saved vector image to {pdf_out}")
-
-            except Exception as e:
-                print(f"Error saving static image. Make sure 'kaleido' is installed (`pip install kaleido`). Error: {e}")(f"[output] Saved high-resolution vector image to {pdf_out}")
 
             except Exception as e:
                 # The message can be more generic as kaleido handles all these formats

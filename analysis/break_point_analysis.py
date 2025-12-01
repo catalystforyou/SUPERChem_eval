@@ -156,6 +156,11 @@ def plot_breakpoint_distribution(stats):
     # --- New: Set global font to Arial ---
     plt.rcParams['font.family'] = 'Arial'
     plt.rcParams['font.sans-serif'] = ['Arial'] # Ensure a fallback if Arial is not found
+    
+    # --- Set line widths ---
+    plt.rcParams['axes.linewidth'] = 2.5  # Chart border width
+    plt.rcParams['xtick.major.width'] = 2.5 # X-axis tick width
+    plt.rcParams['ytick.major.width'] = 2.5 # Y-axis tick width
 
     # Convert dictionary to Pandas DataFrame for easy plotting
     records = []
@@ -176,38 +181,53 @@ def plot_breakpoint_distribution(stats):
         print("DataFrame is empty after processing stats. Cannot plot.")
         return
 
-    tag_order = df.groupby('Ability Tag')['Percentage'].sum().sort_values(ascending=False).index
+    # --- Modified: Keep only top 10 ---
+    tag_order = df.groupby('Ability Tag')['Percentage'].sum().sort_values(ascending=False).index[:10]
+    df = df[df['Ability Tag'].isin(tag_order)]
 
     # --- Start plotting ---
     plt.style.use('seaborn-v0_8-whitegrid')
-    fig, ax = plt.subplots(figsize=(20, 12))
+    fig, ax = plt.subplots(figsize=(20, 10))
 
     sns.barplot(
         data=df,
-        x='Ability Tag',
-        y='Percentage',
+        y='Ability Tag',
+        x='Percentage',
         hue='Model',
         order=tag_order,
         palette='viridis',
-        ax=ax
+        ax=ax,
+        edgecolor='black',
+        linewidth=2.5
     )
 
-    # --- Beautify the chart (font size and style remain the same, but Arial font will be applied) ---
-    # ax.set_title('Distribution of First Reasoning Breakpoints for SOTA Models', fontsize=26, pad=20, weight='bold')
-    ax.set_xlabel('Ability Tag of First Failed Checkpoint', fontsize=20, labelpad=15)
-    ax.set_ylabel('Percentage of First Breakpoints (%)', fontsize=20, labelpad=15)
+    # --- Beautify the chart (larger fonts, bold axes) ---
+    # ax.set_title('Distribution of First Reasoning Breakpoints for SOTA Models', fontsize=30, pad=20, weight='bold')
+    ax.set_ylabel('Ability Tag of First Failed Checkpoint', fontsize=32, labelpad=20, weight='bold')
+    ax.set_xlabel('Percentage of First Breakpoints (%)', fontsize=32, labelpad=20, weight='bold')
 
-    ax.tick_params(axis='y', labelsize=14)
-    plt.setp(ax.get_xticklabels(), rotation=45, ha='right', fontsize=14)
+    # Set tick label sizes
+    ax.tick_params(axis='x', labelsize=24, width=2.5, length=8)
+    ax.tick_params(axis='y', width=2.5, length=8)
+    plt.setp(ax.get_yticklabels(), fontsize=32)
     
-    ax.yaxis.grid(True, linestyle='--', which='major', color='grey', alpha=.5)
+    # Bold borders
+    for spine in ax.spines.values():
+        spine.set_linewidth(2.5)
+        spine.set_color('black')
+    
+    ax.xaxis.grid(True, linestyle='--', which='major', color='grey', alpha=.5, linewidth=1.5)
 
-    # Get the legend and set the font
-    legend = ax.legend(title='Model', fontsize=16, title_fontsize=18)
+    # Get legend and set font
+    legend = ax.legend(title='Model', fontsize=22, title_fontsize=24, loc='lower right', frameon=True, framealpha=0.9, edgecolor='black')
+    legend.get_frame().set_linewidth(2.0)
     plt.setp(legend.get_texts(), fontname='Arial')
-    plt.setp(legend.get_title(), fontname='Arial')
+    plt.setp(legend.get_title(), fontname='Arial', weight='bold')
 
-    sns.despine(top=True, right=True)
+    # sns.despine(top=True, right=True)
+    # Reset left and bottom spine linewidths (despine might affect them)
+    # ax.spines['left'].set_linewidth(2.5)
+    # ax.spines['bottom'].set_linewidth(2.5)
 
     plt.tight_layout()
     
