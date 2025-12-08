@@ -149,7 +149,7 @@ if __name__ == "__main__":
     
     all_json_files = glob.glob(os.path.join(RESULTS_DIR, '*.jsonl'))
     if not all_json_files:
-        print("No .jsonl files found in the results directory.")
+        print("No .jsonl files found in the data directory.")
     else:
         print(f"Found {len(all_json_files)} files to process.")
         aggregated_data, valid_uuids = process_data_files(all_json_files, KNOWN_MODELS)

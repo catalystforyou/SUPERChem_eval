@@ -135,7 +135,7 @@ def calculate_pass_at_1(scores_dict, question_uuids, seed=42):
 
 def main():
     """Main function to run the full analysis."""
-    all_json_files = glob.glob('*.jsonl')
+    all_json_files = glob.glob('data/*.jsonl')
     if not all_json_files:
         print("No .jsonl files found in the current directory.")
         return

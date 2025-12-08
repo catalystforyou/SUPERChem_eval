@@ -39,6 +39,7 @@ This repository provides the tools to run evaluations on the SUPERChem dataset.
 ```
 
 -   **eval/**: Contains the core scripts for running evaluations.
+    -   : Firstly please prepare the API following the config.yaml.sample, and rename it to config.yaml. Please do not upload your own API key to the public.
     -   : Runs various model checkpoints to generate answers and tag their abilities.
     -   : Uses a judge model to perform a fine-grained evaluation of a model's reasoning (RPF scoring).
 
