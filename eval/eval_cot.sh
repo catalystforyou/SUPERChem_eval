@@ -4,7 +4,7 @@
 
 # 1. Path to the file with original questions and ground truth analysis.
 #    This file is the same for all evaluation runs.
-QUESTIONS_FILE="20251014164938_questions.parquet"
+QUESTIONS_FILE="../data/20251014164938_questions.parquet"
 
 # 2. The single, powerful model that will act as the evaluator/judge.
 EVALUATOR_MODEL="gemini-2.5-pro" 
@@ -12,7 +12,7 @@ EVALUATOR_MODEL="gemini-2.5-pro"
 # 3. The prefix used for all model answer files. The script will find all
 #    files starting with this prefix. This should match the prefix from your
 #    original answer generation script.
-ANSWERS_PREFIX="${QUESTIONS_FILE%.parquet}"
+ANSWERS_PREFIX="../data/${QUESTIONS_FILE%.parquet}"
 
 # 4. General settings for the python evaluation script.
 LANGUAGE="en"

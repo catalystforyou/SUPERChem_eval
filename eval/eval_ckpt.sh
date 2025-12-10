@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-INPUT_FILE="20250915021133_questions.parquet"
+INPUT_FILE="../data/20251014164938_questions.parquet"
 OUTPUT_PREFIX="${INPUT_FILE%.parquet}"
 LANGUAGE="en"
 MULTIMODAL=true  # Set to true or false
