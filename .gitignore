@@ -1,3 +1,6 @@
 .vscode/
 config.yaml
 data/*.jsonl
+view/data
+
+.DS_Store

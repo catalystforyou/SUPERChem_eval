@@ -8,16 +8,31 @@ from typing import Iterable, List, Union
 
 import pandas as pd
 import streamlit as st
+import yaml
+from openai import OpenAI
 from streamlit.components.v1 import html
 
 MAX_MODELS = 4
-DEFAULT_JSONL_1 = Path(
-    "../data/20251014164938_questions_release_en_true__gemini-3-pro-preview-thinking_high__1_0_1.jsonl"
-)
-DEFAULT_JSONL_2 = Path(
-    "../data/20251014164938_questions_release_en_true__gpt-5_high__1_0_1.jsonl"
-)
-DEFAULT_PARQUET = Path("../data/20251014164938_questions.parquet")
+BASE_DATA_DIR = Path(__file__).resolve().parent / "data"
+DEFAULT_JSONL_1 = str(BASE_DATA_DIR / "20251014164938_questions_release_en_true__gemini-3-pro-preview-thinking_high__1_0_1.jsonl")
+DEFAULT_JSONL_2 = str(BASE_DATA_DIR / "20251014164938_questions_release_en_true__gpt-5_high__1_0_1.jsonl")
+DEFAULT_PARQUET = str(BASE_DATA_DIR / "20251014164938_questions.parquet")
+DEFAULT_EVAL_PROMPT = """你是科学考试的评估员。请基于题目、官方解析（ground_truth_explanation）以及某模型的思考链（reasoning）与最终回答（output），完成以下判定：
+1) 模型 reasoning+output 是否与官方解析一致，是否存在错误或遗漏。
+2) 模型是否声称回忆/引用了文献、书籍、专利或编号。
+
+请用简短中文 JSON 给出结论，字段：
+- consistent: true/false
+- consistency_reason: 简述一致/不一致的依据
+- recalled_reference: true/false
+- reference_detail: 指出模型声称引用的文献/来源片段；若无，则写 none
+
+上下文：
+Question: {question}
+Reasoning: {reasoning}
+Output: {output}
+Ground Truth Explanation: {explanation}
+"""
 
 SUBFIELD_OPTIONS = [
     "organic chemistry",
@@ -41,6 +56,70 @@ def extract_model_name_from_path(path: str) -> str:
         else:
             return parts[1] + ' (Text-Only)'
     return filename  # 如果无法分割，返回完整文件名
+
+
+def list_data_jsonls() -> List[Path]:
+    """列出 data 目录下的 jsonl 文件。"""
+    if not BASE_DATA_DIR.exists():
+        return []
+    return sorted([p for p in BASE_DATA_DIR.glob("*.jsonl") if p.is_file()])
+
+
+@st.cache_resource(show_spinner=False)
+def load_eval_client(target_model: str = "deepseek-chat") -> tuple[OpenAI, str]:
+    """读取 view/config.yaml 并返回 OpenAI 客户端与模型名。"""
+    cfg_path = Path(__file__).resolve().parent / "config.yaml"
+    if not cfg_path.exists():
+        raise FileNotFoundError(f"未找到配置文件: {cfg_path}")
+    cfg = yaml.safe_load(cfg_path.read_text(encoding="utf-8"))
+    model_cfg = None
+    for item in cfg.get("model_list", []):
+        if item.get("model") == target_model or model_cfg is None:
+            model_cfg = item
+            if item.get("model") == target_model:
+                break
+    if not model_cfg:
+        raise ValueError("配置文件中未找到可用的模型配置。")
+    client = OpenAI(base_url=model_cfg["base_url"], api_key=model_cfg["api_key"])
+    return client, model_cfg["model"]
+
+
+def build_eval_prompt(template: str, question_row: pd.Series, model_row: pd.Series, lang: str) -> str:
+    """填充评估 prompt 所需字段。"""
+    question_text = question_row.get(f"question_{lang}") or question_row.get("question") or ""
+    explanation_text = question_row.get(f"explanation_{lang}") or question_row.get("explanation") or ""
+    reasoning_text = model_row.get("llm_reasoning") or model_row.get("llm_output") or ""
+    output_text = model_row.get("llm_output") or model_row.get("llm_answer") or ""
+    return template.format(
+        question=str(question_text),
+        reasoning=str(reasoning_text),
+        output=str(output_text),
+        explanation=str(explanation_text),
+    )
+
+
+def stream_eval(
+    prompt_template: str,
+    question_row: pd.Series,
+    model_row: pd.Series,
+    lang: str,
+    placeholder,
+) -> str:
+    """调用 LLM 评估，流式写入 placeholder。"""
+    client, model_name = load_eval_client()
+    prompt = build_eval_prompt(prompt_template, question_row, model_row, lang)
+    resp_text = ""
+    stream = client.chat.completions.create(
+        model=model_name,
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
+    for chunk in stream:
+        delta = chunk.choices[0].delta.content or ""
+        if delta:
+            resp_text += delta
+            placeholder.markdown(resp_text)
+    return resp_text
 
 
 def _read_by_ext(src: Union[str, Path, io.BytesIO], ext: str) -> pd.DataFrame:
@@ -205,6 +284,8 @@ def main() -> None:
 
         st.divider()
         st.subheader("模型 (最多 4 个)")
+        available_data_files = list_data_jsonls()
+        data_options = ["(自定义路径)"] + [p.name for p in available_data_files]
         model_count = st.slider("需要对比的模型数量", min_value=1, max_value=MAX_MODELS, value=2)
         model_inputs = []
         for i in range(model_count):
@@ -217,7 +298,25 @@ def main() -> None:
                 else:
                     default_path = ""
 
-                model_path = st.text_input("JSONL 路径", value=default_path, key=f"path_jsonl_{i}")
+                default_choice_index = 0
+                if default_path:
+                    default_name = Path(default_path).name
+                    if default_name in data_options:
+                        default_choice_index = data_options.index(default_name)
+
+                file_choice = st.selectbox(
+                    "选择 data 目录模型文件",
+                    options=data_options,
+                    index=default_choice_index,
+                    key=f"data_choice_{i}",
+                )
+
+                if file_choice == "(自定义路径)":
+                    model_path = st.text_input("JSONL 路径", value=default_path, key=f"path_jsonl_{i}")
+                else:
+                    model_path = str(BASE_DATA_DIR / file_choice)
+                    st.caption(f"使用 data/{file_choice}")
+
                 uploaded_jsonl = st.file_uploader(
                     "或上传 JSONL/JSON",
                     type=["jsonl", "json"],
@@ -251,8 +350,17 @@ def main() -> None:
                 )
 
         st.divider()
+        st.subheader("LLM 评估 Prompt")
+        eval_prompt = st.text_area(
+            "用于评估 reasoning+output 与解析的一致性，可实时修改",
+            value=DEFAULT_EVAL_PROMPT,
+            height=220,
+            key="eval_prompt",
+        )
+
+        st.divider()
         st.subheader("检索 / 过滤")
-        keyword_question = st.text_input("题目全文关键词", key="kw_question")
+        keyword_question = st.text_input("题目全文关键词（支持uuid）", key="kw_question")
         keyword_answer = st.text_input("回答全文关键词", key="kw_answer")
         subfield_filter = st.multiselect(
             "学科领域 (subfield)",
@@ -329,6 +437,7 @@ def main() -> None:
 
     with score_filter_box:
         st.subheader("按模型 score 过滤")
+        intersection_only = st.checkbox("仅展示交集", value=False, key="score_intersection_only")
         model_score_filters: dict[str, List] = {}
         for label, scores in score_options.items():
             if scores:
@@ -355,10 +464,15 @@ def main() -> None:
         ]
         if c in combined.columns
     ]
-    if keyword_question and question_cols:
-        contains = pd.DataFrame(
-            {c: combined[c].astype(str).str.contains(keyword_question, case=False, na=False) for c in question_cols}
-        )
+    if keyword_question:
+        search_fields = {
+            "uuid": combined["uuid"].astype(str).str.contains(keyword_question, case=False, na=False)
+        }
+        if question_cols:
+            search_fields.update(
+                {c: combined[c].astype(str).str.contains(keyword_question, case=False, na=False) for c in question_cols}
+            )
+        contains = pd.DataFrame(search_fields)
         mask &= contains.any(axis=1)
 
     answer_cols = [c for c in ["llm_answer", "llm_reasoning", "llm_output"] if c in combined.columns]
@@ -382,6 +496,11 @@ def main() -> None:
         mask &= ~current_mask
 
     filtered = combined[mask].reset_index(drop=True)
+    if intersection_only:
+        required_count = len(model_frames)
+        uuid_counts = filtered.groupby("uuid")["model_name"].nunique()
+        keep_uuids = uuid_counts[uuid_counts == required_count].index
+        filtered = filtered[filtered["uuid"].isin(keep_uuids)].reset_index(drop=True)
     st.success(
         f"题库 {len(df_q)} 行，模型共 {sum(len(df) for _, df, _ in model_frames)} 行，"
         f"uuid 交集 {len(common_uuids)}，过滤后 {len(filtered)} 行"
@@ -390,6 +509,9 @@ def main() -> None:
     if filtered.empty:
         st.warning("过滤后无数据，请调整筛选条件。")
         return
+
+    if "eval_results" not in st.session_state:
+        st.session_state.eval_results = {}
 
     # 摘要表：每个 uuid 的各模型 score
     meta_cols = [
@@ -518,6 +640,20 @@ def main() -> None:
                         st.markdown("**llm_output**")
                         st.markdown(str(model_row.get("llm_output")))
                     st.divider()
+
+                    eval_key = f"{selected_uuid}::{label}"
+                    eval_placeholder = st.empty()
+                    if st.session_state.get("eval_results", {}).get(eval_key):
+                        eval_placeholder.markdown(st.session_state["eval_results"][eval_key])
+
+                    if st.button("评估 reasoning+output", key=f"btn_eval_{selected_uuid}_{label}"):
+                        try:
+                            prompt_template = st.session_state.get("eval_prompt") or DEFAULT_EVAL_PROMPT
+                            with st.spinner("调用 llm 评估中..."):
+                                resp = stream_eval(prompt_template, question_row, model_row, lang, eval_placeholder)
+                            st.session_state["eval_results"][eval_key] = resp
+                        except Exception as exc:
+                            eval_placeholder.error(f"评估失败: {exc}")
 
 
 if __name__ == "__main__":
