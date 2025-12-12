@@ -1,6 +1,10 @@
 .vscode/
 config.yaml
 data/*.jsonl
+data/legacy/*
 view/data
 
 .DS_Store
+reparse_answers.py
+
+data/20251014164938_questions_full.parquet

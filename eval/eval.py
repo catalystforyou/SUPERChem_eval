@@ -259,11 +259,13 @@ def parse_mcp_response(response: str) -> Dict[str, str]:
         A dictionary containing the reasoning content and answer.
     """
     pattern = r'\\boxed\{(.+?)\}'
-    match = re.search(pattern, response, re.DOTALL)
+    matches = list(re.finditer(pattern, response, re.DOTALL))
 
-    if match:
+    if matches:
+        match = matches[-1]
         answer = match.group(1).strip()
-        reason = response[:match.start()].strip() + response[match.end():].strip()
+        answer = answer.replace('\\', '').replace('{', '').replace('}', '').replace('text', '').replace('math', '').replace('bf', '').replace('rm', '').strip()
+        reason = response
         
         if not reason:
             reason = "No reasoning provided."
