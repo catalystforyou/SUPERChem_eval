@@ -86,21 +86,40 @@ def process_data_files(files, known_models, split_map_file=SPLIT_MAP_FILE):
         return None, None
     
     raw_data = defaultdict(lambda: {'scores': defaultdict(list), 'pass_k': 1})
+    
+    # Group files by model and type
+    model_files = defaultdict(lambda: {'multimodal': [], 'text_only': []})
     for filepath in files:
         model_name, multimodal, pass_k = parse_filename_final(filepath, known_models)
-        if not model_name or multimodal: 
-            continue # Skip if no model name or if it's a multimodal result
+        if not model_name: 
+            continue
         
-        raw_data[model_name]['pass_k'] = max(raw_data[model_name]['pass_k'], pass_k)
-        lines = open(filepath, 'r', encoding='utf-8').readlines()
-        np.random.seed(0)
-        np.random.shuffle(lines)
-        for line in lines:
+        if multimodal:
+            model_files[model_name]['multimodal'].append((filepath, pass_k))
+        else:
+            model_files[model_name]['text_only'].append((filepath, pass_k))
+
+    for model_name, groups in model_files.items():
+        # Determine which group to use
+        if groups['multimodal']:
+            target_files = groups['multimodal']
+        else:
+            target_files = groups['text_only']
+            
+        for filepath, pass_k in target_files:
+            raw_data[model_name]['pass_k'] = max(raw_data[model_name]['pass_k'], pass_k)
             try:
-                record = json.loads(line)
-                if record['uuid'] in valid_uuids:
-                    raw_data[model_name]['scores'][record['uuid']].append(record['score'])
-            except (json.JSONDecodeError, KeyError):
+                lines = open(filepath, 'r', encoding='utf-8').readlines()
+                np.random.seed(0)
+                np.random.shuffle(lines)
+                for line in lines:
+                    try:
+                        record = json.loads(line)
+                        if record['uuid'] in valid_uuids:
+                            raw_data[model_name]['scores'][record['uuid']].append(record['score'])
+                    except (json.JSONDecodeError, KeyError):
+                        continue
+            except IOError:
                 continue
     return raw_data, valid_uuids
 
@@ -163,7 +182,7 @@ if __name__ == "__main__":
             metrics_df = calculate_metrics_v2(aggregated_data)
             
             if not metrics_df.empty:
-                print("\n--- Text-Only Model Performance Summary ---")
+                print("\n--- Model Performance Summary ---")
                 summary_table = metrics_df.pivot_table(
                     index='Model', columns='Metric', values=['Accuracy', 'StdDev']
                 ).sort_index()
