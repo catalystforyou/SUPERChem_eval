@@ -39,6 +39,31 @@ DAG_eval/
 └── README.md              # This file
 ```
 
+## Data Requirements
+
+**Important**: Place the following data files in the `./data` directory before running the pipeline:
+
+1. **Questions Dataset**:
+   ```
+   ./data/20251014164938_questions.parquet
+   ```
+   This file contains the chemistry questions with ground truth DAGs.
+
+2. **LLM Answers**:
+   ```
+   ./data/20251014164938_questions_release_en_{multimodal}__{model}__1_0_1.jsonl
+   ```
+   - `{multimodal}`: `true` or `false`
+   - `{model}`: LLM model name (e.g., `gpt-5_high`, `gemini-2_5-pro_high`)
+
+   Example filename:
+   - `20251014164938_questions_release_en_false__gpt-5_high__1_0_1.jsonl` (text-only)
+   - `20251014164938_questions_release_en_true__gemini-2_5-pro_high__1_0_1.jsonl` (multimodal)
+
+The pipeline expects these specific file paths as defined in `run_full_pipeline.sh`:
+- `QUESTIONS="${DATA_DIR}/20251014164938_questions.parquet"`
+- `ANSWERS="${DATA_DIR}/20251014164938_questions_release_en_${MULTIMODAL}__${MODEL}__1_0_1.jsonl"`
+
 ## Installation
 
 ```bash

@@ -35,13 +35,21 @@ This repository provides the tools to run evaluations on the SUPERChem dataset.
 ├── eval/               # Scripts for running evaluations and generating model outputs.
 ├── data/               # Datasets, metadata, human baselines, and raw evaluation results.
 ├── analysis/           # Scripts for processing results and generating analyses/plots.
-└── results/            # Output directory for generated plots and figures.
+├── results/            # Output directory for generated plots and figures.
+└── DAG_eval/          # DAG-based reasoning evaluation framework (RPF scoring).
 ```
 
 -   **eval/**: Contains the core scripts for running evaluations.
     -   `eval/config.yaml`: Firstly please prepare the API following the `eval/config.yaml.sample`, and rename it to `eval/config.yaml`. Please do not upload your own API key to the public.
     -   `eval/eval.py`: Runs various model checkpoints to generate answers and tag their abilities.
     -   `eval/eval_cot.py`: Uses a judge model to perform a fine-grained evaluation of a model's reasoning (RPF scoring).
+
+-   **DAG_eval/**: DAG-based reasoning evaluation framework.
+    -   Extracts reasoning chains from LLM answers as Directed Acyclic Graphs (DAGs)
+    -   Matches LLM reasoning graphs against ground truth graphs
+    -   Evaluates graph similarity using RPF (Reasoning Path Fidelity) metric
+    -   Includes Streamlit-based visualization tool
+    -   See `DAG_eval/README.md` for detailed usage instructions
 
 -   **data/**: Stores all necessary data for the evaluations.
     -   `data/20251015_baseline.csv`: Human performance baseline.
