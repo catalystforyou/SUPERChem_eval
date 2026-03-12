@@ -1,10 +1,10 @@
 .vscode/
 config.yaml
 data/*.jsonl
+data/legacy/*
 view/data
 
-# dev and analysis scripts
-stats.ipynb
-align_data.ipynb
-
 .DS_Store
+reparse_answers.py
+
+data/20251014164938_questions_full.parquet
