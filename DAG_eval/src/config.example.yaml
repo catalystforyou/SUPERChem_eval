@@ -1,0 +1,12 @@
+model_list:
+  - model: model1
+    base_url: base_url1
+    api_key: api_key1
+  - model: model2
+    base_url: base_url2
+    api_key: api_key2
+
+mol_compare:
+  url: xxx_url/chemdraw/api/batch_mol_compare
+  api_key: xxx_api_key
+  timeout: 15
