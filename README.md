@@ -10,6 +10,13 @@ This repository contains the official evaluation framework for **SUPERChem**, an
 
 ---
 
+## Updates & News
+
+* **[2026-02-14]** SUPERChem is adopted by [**ByteDance's Seed-2.0**](https://github.com/ByteDance-Seed/Seed2.0/blob/master/Seed2.0%20Model%20Card.pdf).
+* **[2025-12-06]** **PDF Preview Released**: We have released the PDF version of SUPERChem in both English and Chinese to facilitate easier previewing and manual inspection, especially for non-technical users. You can download [SUPERChem-500.zip](https://huggingface.co/datasets/ZehuaZhao/SUPERChem/blob/main/SUPERChem-500.zip) to access the dataset in PDF format. The password to unzip the file is `SUPERChem2025`.
+
+---
+
 ## Abstract
 
 Current benchmarks for evaluating the chemical reasoning capabilities of Large Language Models (LLMs) are limited by oversimplified tasks, ceiling effects, lack of process-level evaluation, and misalignment with expert-level chemistry skills. To address these issues, we introduce **SUPERChem**, a benchmark of 500 expert-curated reasoning-intensive chemistry problems, covering diverse subfields and provided in both multimodal and text-only formats. Original content and an iterative curation pipeline eliminate flawed items and mitigate data contamination. Each problem is paired with an expert-authored solution path, enabling *Reasoning Path Fidelity* (RPF) scoring to evaluate reasoning quality beyond final-answer accuracy. Evaluations against a human baseline of 40.3% accuracy show that even the best-performing model, GPT-5 (High), reaches only 38.5%. By combining high difficulty, controlled multimodality, and process-level metrics, SUPERChem provides a rigorous platform for diagnosing and advancing AI chemical reasoning toward expert-level scientific inquiry.
