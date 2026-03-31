@@ -12,6 +12,7 @@ This repository contains the official evaluation framework for **SUPERChem**, an
 
 ## Updates & News
 
+* **[2026-03-16]** SUPERChem is adopted by [**MiroThinker-1.7**](https://arxiv.org/pdf/2603.15726).
 * **[2026-02-14]** SUPERChem is adopted by [**ByteDance's Seed-2.0**](https://github.com/ByteDance-Seed/Seed2.0/blob/master/Seed2.0%20Model%20Card.pdf).
 * **[2025-12-06]** **PDF Preview Released**: We have released the PDF version of SUPERChem in both English and Chinese to facilitate easier previewing and manual inspection, especially for non-technical users. You can download [SUPERChem-500.zip](https://huggingface.co/datasets/ZehuaZhao/SUPERChem/blob/main/SUPERChem-500.zip) to access the dataset in PDF format. The password to unzip the file is `SUPERChem2025`.
 
