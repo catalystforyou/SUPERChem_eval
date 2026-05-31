@@ -8,6 +8,131 @@
 
 This repository contains the official evaluation framework for **SUPERChem**, an expert-curated, reasoning-intensive multimodal benchmark for the rigorous evaluation of deep chemical reasoning in Large Language Models (LLMs) and Multimodal LLMs (MLLMs).
 
+**License:** [MIT](LICENSE)
+
+---
+
+## Quick demo (recommended first step)
+
+Verify your environment with bundled sample data (Gemini 2.5 Pro answers, no API key):
+
+```bash
+pip install -r requirements.txt
+python demo/run_demo.py
+```
+
+See [demo/README.md](demo/README.md) for file descriptions and DAG_eval usage with the same sample.
+
+---
+
+## 1. System requirements
+
+### Software dependencies
+
+Install from the repository root:
+
+```bash
+pip install -r requirements.txt
+```
+
+| Component | Version (tested) |
+|-----------|------------------|
+| Python | 3.10, 3.11, 3.12 |
+| pandas | 2.x |
+| pyarrow | 14.x–21.x |
+| openai | 1.x–2.x |
+| PyYAML, loguru, tqdm | see `requirements.txt` |
+| networkx, matplotlib | for `DAG_eval/` |
+| plotly, scipy, seaborn, Pillow | for `analysis/` |
+| streamlit | for `DAG_eval/view/` (optional) |
+
+### Operating systems tested
+
+- Ubuntu 22.04 / 24.04 LTS
+- macOS 14+ (Apple Silicon and Intel)
+
+### Hardware
+
+- **Demo / accuracy scripts:** standard desktop or laptop (CPU only).
+- **Full benchmark inference (`eval/`):** network access to your LLM API; no GPU required in this repo.
+- **DAG / RPF pipeline (`DAG_eval/`):** API access to judge models; optional external [molecule comparison service](https://github.com/tom832/chemdraw-server) for structure matching (see `DAG_eval/README.md`).
+
+---
+
+## 2. Installation
+
+```bash
+git clone <repository-url>
+cd SUPERChem_eval
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp eval/config.yaml.sample eval/config.yaml    # then add API keys for full eval
+```
+
+**Typical install time:** 2–5 minutes on a normal desktop (depends on network speed).
+
+---
+
+## 3. Demo
+
+### Run the bundled demo
+
+```bash
+python demo/run_demo.py
+```
+
+| Item | Value |
+|------|--------|
+| Data | 10 questions + Gemini 2.5 Pro (text-only, high) answers in `demo/` |
+| Expected output | Printed pass@1 accuracy (~50%, 5/10) and per-UUID scores |
+| Expected runtime | &lt; 5 s (after `pip install`) |
+
+### Demo contents
+
+- `demo/questions_demo.parquet` — questions
+- `demo/20251014164938_questions_release_en_false__gemini-2_5-pro_high__1_0_1.jsonl` — model outputs
+- `demo/ground_truth_graphs_detail.jsonl` — expert reasoning graphs for RPF
+
+---
+
+## 4. Instructions for use
+
+### Full dataset
+
+The complete benchmark (500 items) is on Hugging Face: [ZehuaZhao/SUPERChem](https://huggingface.co/datasets/ZehuaZhao/SUPERChem). Place downloaded files under `data/` following names in `eval/eval.sh` and `DAG_eval/README.md`.
+
+### Generate model answers (`eval/`)
+
+1. Copy `eval/config.yaml.sample` → `eval/config.yaml` and set API endpoints/keys.
+2. Edit `eval/eval.sh` (model, `INPUT_FILE`, multimodal flag).
+3. Run: `cd eval && bash eval.sh`  
+   Outputs: `data/*.jsonl`.
+
+Details: [eval/README.md](eval/README.md).
+
+### Reasoning Path Fidelity / DAG evaluation (`DAG_eval/`)
+
+1. Place questions parquet, model answers jsonl, and `ground_truth_graphs_detail.jsonl` under `DAG_eval/data/`.
+2. Copy `DAG_eval/src/config.example.yaml` → `DAG_eval/src/config.yaml`.
+3. Run `./run_full_pipeline.sh` or individual steps in `DAG_eval/src/`.
+
+Details: [DAG_eval/README.md](DAG_eval/README.md).
+
+### Analyze results (`analysis/`)
+
+Process `data/*.jsonl` with scripts in `analysis/` (e.g. `calc_pass_withbaseline.py`, `draw_radar_plotly.py`). Figures go to `results/`.
+
+Details: [analysis/README.md](analysis/README.md).
+
+### (Optional) Reproducing paper figures
+
+1. Obtain model answer files for the models reported in the paper (via `eval/` or released artifacts).
+2. Run `analysis/calc_pass_withbaseline.py` for accuracy tables.
+3. Run plotting scripts (`draw_radar_plotly.py`, `pass_k_curve.py`, etc.) with paths pointing to your `data/` files.
+
+Exact figure-to-script mapping may vary by revision; use filenames in `results/` as a reference for expected outputs.
+
 ---
 
 ## Updates & News
@@ -26,73 +151,27 @@ Current benchmarks for evaluating the chemical reasoning capabilities of Large L
 
 ## Key Features
 
--   **Expert-Level Challenge**: 500 reasoning-intensive problems curated by domain experts to test deep chemical reasoning and mitigate the ceiling effects seen in other benchmarks.
--   **Process-Level Evaluation**: Introduces **Reasoning Path Fidelity (RPF)**, a metric to assess the alignment of a model's reasoning with expert-authored solution paths, distinguishing genuine understanding from "lucky guesses."
--   **Controlled Multimodality**: Each problem is available in both multimodal (with images) and text-only formats, enabling a rigorous, controlled analysis of a model's ability to integrate visual information.
--   **Fine-Grained Ability Taxonomy**: A systematic categorization of chemical knowledge and reasoning skills supports detailed diagnosis of model strengths and weaknesses across various sub-domains.
--   **Contamination Resistant**: Problems are newly authored or adapted from non-public sources and undergo a rigorous human-in-the-loop curation process to ensure quality and reduce the risk of data leakage from web-scraped training sets.
+- **Expert-Level Challenge**: 500 reasoning-intensive problems curated by domain experts.
+- **Process-Level Evaluation**: **Reasoning Path Fidelity (RPF)** via expert solution DAGs.
+- **Controlled Multimodality**: Text-only and multimodal variants per question.
+- **Fine-Grained Ability Taxonomy**: Tags for knowledge and reasoning skills.
+- **Contamination Resistant**: Expert-authored or non-public sources with human curation.
 
 ---
 
-## Repository Structure
-
-This repository provides the tools to run evaluations on the SUPERChem dataset.
+## Repository structure
 
 ```
 .
-├── eval/               # Scripts for running evaluations and generating model outputs.
-├── data/               # Datasets, metadata, human baselines, and raw evaluation results.
-├── analysis/           # Scripts for processing results and generating analyses/plots.
-├── results/            # Output directory for generated plots and figures.
-└── DAG_eval/          # DAG-based reasoning evaluation framework (RPF scoring).
+├── demo/               # Small sample dataset + run_demo.py (start here)
+├── eval/               # LLM answer generation
+├── DAG_eval/           # DAG extraction, matching, RPF scoring
+├── data/               # Full benchmark data and evaluation outputs
+├── analysis/           # Metrics and plots
+├── results/            # Generated figures
+├── requirements.txt
+└── LICENSE             # MIT
 ```
-
--   **eval/**: Contains the core scripts for running evaluations.
-    -   `eval/config.yaml`: Firstly please prepare the API following the `eval/config.yaml.sample`, and rename it to `eval/config.yaml`. Please do not upload your own API key to the public.
-    -   `eval/eval.py`: Runs various model checkpoints to generate answers and tag their abilities.
-    -   `eval/eval_cot.py`: Uses a judge model to perform a fine-grained evaluation of a model's reasoning (RPF scoring).
-
--   **DAG_eval/**: DAG-based reasoning evaluation framework.
-    -   Extracts reasoning chains from LLM answers as Directed Acyclic Graphs (DAGs)
-    -   Matches LLM reasoning graphs against ground truth graphs
-    -   Evaluates graph similarity using RPF (Reasoning Path Fidelity) metric
-    -   Includes Streamlit-based visualization tool
-    -   See `DAG_eval/README.md` for detailed usage instructions
-
--   **data/**: Stores all necessary data for the evaluations.
-    -   `data/20251015_baseline.csv`: Human performance baseline.
-    -   `data/ability_tags_description.json`: Definitions for all ability tags.
-    -   `data/dataset_split_map.json`: Pre-defined dataset splits based on difficulty.
-    -   This folder also serves as the output location for raw data from the `eval/` scripts.
-
--   **analysis/**: Includes Python scripts for post-processing and analyzing the evaluation data. This is where you can generate metrics and visualizations like radar charts, pass@k curves, and breakpoint analyses.
-
--   **results**/**: This folder is the designated output directory for the visual artifacts (plots, charts, etc.) generated by the scripts in the `analysis/` directory.
-
----
-
-## Python Dependencies
-```
-pip install pandas pyarrow loguru openai pyyaml tqdm plotly playwright scipy seaborn Pillow streamlit ipykernel
-```
-
-## Evaluation Workflow
-
-A typical evaluation workflow follows these steps:
-
-1.  **Configure Evaluation**:
-    -   Modify the shell scripts in the  directory (, ) to specify the models you want to test, input files, and other parameters.
-
-2.  **Run Evaluation**:
-    -   Execute the scripts from the  directory to generate model answers and perform CoT evaluations.
-    -   The raw and evaluated `.jsonl` files will be saved in the  directory.
-
-3.  **Analyze Results**:
-    -   Use the Python scripts in the  directory to process the data stored in .
-    -   For example, run `calc_pass_withbaseline.py` to get accuracy tables or `draw_radar_plotly.py` to visualize model capabilities.
-
-4.  **View Outputs**:
-    -   The plots and figures generated by the analysis scripts will be saved in the  directory.
 
 ---
 
@@ -102,12 +181,12 @@ If you use SUPERChem or this evaluation framework in your research, please cite 
 
 ```bibtex
 @misc{zhao2025superchemmultimodalreasoningbenchmark,
-      title={SUPERChem: A Multimodal Reasoning Benchmark in Chemistry}, 
+      title={SUPERChem: A Multimodal Reasoning Benchmark in Chemistry},
       author={Zehua Zhao and Zhixian Huang and Junren Li and Siyu Lin and Junting Zhou and Fengqi Cao and Kun Zhou and Rui Ge and Tingting Long and Yuexiang Zhu and Yan Liu and Jie Zheng and Junnian Wei and Rong Zhu and Peng Zou and Wenyu Li and Zekai Cheng and Tian Ding and Yaxuan Wang and Yizhao Yan and Tingru Wei and Haowei Ming and Weijie Mao and Chen Sun and Yiming Liu and Zichen Wang and Zuo Zhang and Tong Yang and Hao Ma and Zhen Gao and Jian Pei},
       year={2025},
       eprint={2512.01274},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2512.01274}, 
+      url={https://arxiv.org/abs/2512.01274},
 }
 ```
