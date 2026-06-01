@@ -24,6 +24,12 @@ import plotly.graph_objects as go
 import streamlit as st
 from streamlit_agraph import Config, Edge, Node, agraph
 
+VIEW_DIR = Path(__file__).resolve().parent
+DAG_EVAL_ROOT = VIEW_DIR.parent
+DEFAULT_CLEANED_DIR = DAG_EVAL_ROOT / "cleaned"
+DEFAULT_GT_PATH = DEFAULT_CLEANED_DIR / "ground_truth_graphs_cleaned.jsonl"
+DEFAULT_DATA_DIR = DAG_EVAL_ROOT / "data"
+
 
 # ============================================================
 # Data Loading
@@ -342,18 +348,18 @@ def main():
     
     # Sidebar: Model selection
     with st.sidebar:
-        st.header("📂 Modelselect")
+        st.header("📂 Model Selection")
         
         base_dir = st.text_input(
             "Cleaned Directory",
-            value="/hdd01/zxhuang/SUPERChem_eval/DAG_eval/cleaned",
-            help="containing model evaluation results"
+            value=str(DEFAULT_CLEANED_DIR),
+            help="Directory containing merged match_results_*.jsonl files",
         )
         
         gt_path = st.text_input(
             "Ground Truth File",
-            value="/hdd01/zxhuang/SUPERChem_eval/DAG_eval/cleaned/ground_truth_graphs_cleaned.jsonl",
-            help="Ground Truth DAG file path"
+            value=str(DEFAULT_GT_PATH),
+            help="Ground truth DAG JSONL path",
         )
         
         models = list_model_files(base_dir)
@@ -367,10 +373,10 @@ def main():
         default_name = "gemini-2_5-pro_high (Multimodal)"
         default_idx = sorted_names.index(default_name) if default_name in sorted_names else 0
         selected_model_name = st.selectbox(
-            "selectModel",
+            "Select Model",
             options=sorted_names,
             index=default_idx,
-            help="select model evaluation results to view"
+            help="Choose which model evaluation results to view",
         )
         
         selected_model = model_options[selected_model_name]
@@ -389,8 +395,8 @@ def main():
         model_data = load_jsonl(Path(selected_model["path"]))
         model_dict = {item["uuid"]: item for item in model_data}
         
-        # Load LLM output data from DAG_eval/data/
-        data_dir = os.path.join(os.path.dirname(base_dir), "data")
+        # Load LLM output data from DAG_eval/data/ (sibling of cleaned/)
+        data_dir = str(Path(base_dir).resolve().parent / "data")
         data_file = find_data_file(data_dir, selected_model["model_name"], selected_model["multimodal"])
         llm_output_dict = {}
         if data_file:
@@ -471,7 +477,7 @@ def main():
     
     # Multimodal filter
     multimodal_filter = st.sidebar.multiselect(
-        "questionstype",
+        "Question Type",
         options=['Multimodal (True)', 'Text-only (False)'],
         default=['Multimodal (True)', 'Text-only (False)'],
         help="Filter Multimodal or Text-only questions"
@@ -515,7 +521,7 @@ def main():
     # Model Overall Statistics (in sidebar)
     # ----------------------------------------------------
     st.sidebar.divider()
-    st.sidebar.subheader("📈 Modeloverall metrics")
+    st.sidebar.subheader("📈 Model Overall Metrics")
     
     # Calculate overall averages
     accuracy = df['score'].mean() * 100
@@ -527,7 +533,7 @@ def main():
     avg_edge_precision = df['edge_precision'].mean()
     avg_edge_f1 = df['edge_f1'].mean()
     
-    st.sidebar.metric("Accuracy (Accuracy)", f"{accuracy:.1f}%")
+    st.sidebar.metric("Accuracy", f"{accuracy:.1f}%")
     st.sidebar.metric("average RPF", f"{avg_rpf:.1f}%")
     
     # Node metrics in sidebar
@@ -620,7 +626,7 @@ def main():
         # Display chart with click selection
         event = st.plotly_chart(
             fig, 
-            use_containinger_width=True, 
+            use_container_width=True,
             key="scatter_plot",
             on_select="rerun",
             selection_mode="points"
@@ -744,9 +750,9 @@ def main():
                 is_multimodal = llm_item.get('multimodal', False)
                 mm_tag = "🖼️ Multimodal" if is_multimodal else "📝 Text-only"
                 if is_correct:
-                    st.success(f"✅ **Model Answer Correct** | {mm_tag} | UUID: `{current_uuid}` | [🔗 viewquestions]({question_url})")
+                    st.success(f"✅ **Model Answer Correct** | {mm_tag} | UUID: `{current_uuid}` | [🔗 View Question]({question_url})")
                 else:
-                    st.error(f"❌ **Model Answer Wrong** | {mm_tag} | UUID: `{current_uuid}` | [🔗 viewquestions]({question_url})")
+                    st.error(f"❌ **Model Answer Incorrect** | {mm_tag} | UUID: `{current_uuid}` | [🔗 View Question]({question_url})")
                 
                 # Display metrics - Row 2: Node metrics
                 st.markdown("##### 📊 Current Question Metrics")
@@ -773,7 +779,7 @@ def main():
                 
                 with tab1:
                     st.markdown("**Legend**: 🟢 Full Match | 🟡 Partial Match | 🔴 Not Matched | ⚪ Non-critical Nodes")
-                    with st.containinger(border=True):
+                    with st.container(border=True):
                         render_graph(
                             gt_item, 
                             sim_result, 
@@ -782,8 +788,8 @@ def main():
                         )
                 
                 with tab2:
-                    st.markdown("**Legend**: 🟢 Matched to GT Nodes | 🩷 Not Matched（may be hallucination）")
-                    with st.containinger(border=True):
+                    st.markdown("**Legend**: 🟢 Matched to GT Nodes | 🩷 Not Matched (possible hallucination)")
+                    with st.container(border=True):
                         render_graph(
                             llm_item, 
                             sim_result, 
