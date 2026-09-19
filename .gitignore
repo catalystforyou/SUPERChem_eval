@@ -8,3 +8,17 @@ view/data
 reparse_answers.py
 
 data/20251014164938_questions_full.parquet
+
+# Local environments, credentials and generated caches (never release).
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+outputs/
+*.tar.zst
+*.tar.gz
+*.zip
+/tools/opsin/

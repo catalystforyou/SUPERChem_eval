@@ -5,4 +5,4 @@ model_list:
   - model: gpt-4o-2024-11-20
     base_url: https://xxx
     api_key: sk-xxx
-......
+# Add additional model entries under model_list as needed.

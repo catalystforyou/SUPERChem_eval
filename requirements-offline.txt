@@ -1,0 +1,5 @@
+# Minimal no-API demo/metrics dependencies; tested locally on Python 3.13.12.
+# Python 3.10/3.12 jobs are configured in CI, not claimed as executed locally.
+pandas>=2.0,<4
+pyarrow>=14,<25
+networkx>=3.2,<4

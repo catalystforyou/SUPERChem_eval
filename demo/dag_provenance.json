@@ -1,0 +1,17 @@
+{
+  "historical_sources": [
+    {
+      "path": "data/20251014164938_questions_release_en_false__gemini-2_5-pro_high__1_0_1.jsonl",
+      "sha256": "8c0b5440535ca266a22f4880e01555a073d3604e91162cae366c15733477acc3"
+    },
+    {
+      "path": "DAG_eval/data/ground_truth_graphs_detail.jsonl",
+      "sha256": "120410834be508f8b50039395572b52fbea5eed3a549432c68b74c8c23176f1d"
+    },
+    {
+      "path": "DAG_eval/cleaned/match_results_false__gemini-2_5-pro_high__v5_merged.jsonl",
+      "sha256": "229416fa5c53216dd09c2aef7e80855bd96231f5a03b9d134767d6eaa5fa709c"
+    }
+  ],
+  "selection": "Existing 10 demo UUIDs; answer text and GT equality verified against historical sources; no API calls"
+}

@@ -1,0 +1,1485 @@
+{
+  "schema_version": 1,
+  "formula_version": "original-rpf-v1",
+  "state": "candidate_inputs_only",
+  "description": "Resolved local input lineage only. Not the final manuscript freeze; final returned DS-GT match outputs still need reconciliation. Kimi/Intern inclusion is not inferred.",
+  "question_ids": [
+    "00b0dd4f-91c6-4f5a-8943-cff8efdfe39e",
+    "0189fa7d-fea5-48bd-9175-a089e02072ca",
+    "01f3aeb3-ac65-486a-9d8a-2b109e18252d",
+    "021c1e1a-49a5-404b-931f-6a271e2811f7",
+    "0234f048-2e75-4b38-a476-eb816ad56684",
+    "03243d76-9884-431e-a79d-3a8a66425347",
+    "032688bc-f3f3-43b6-b1e4-f99da804a66d",
+    "033374b7-9e65-4322-9e2d-c81f9bb3521a",
+    "03418103-638c-4927-9b65-4dffdc4b050b",
+    "03ce65c7-5d7b-450a-b32b-b2267998f4ca",
+    "03e902cf-6e35-4793-89f4-b63f6da21418",
+    "04347694-fa25-47ff-8879-2b1a06889f22",
+    "0507598e-30ac-472e-8795-09ee7c5c4c3e",
+    "05a5fe6c-fa7a-46be-85c8-5a3dbdd2a1c6",
+    "05ba7cae-3682-44dd-9018-f1bff6001ef3",
+    "05d861ea-31c2-4bb2-b9fa-1ffe6a6c4799",
+    "062b92c6-d5f2-40b2-be19-669145e0a823",
+    "07377a1e-b966-48a9-bc58-ebc05d3111c2",
+    "07b09e03-2182-4b63-b2c2-aadafe0abf38",
+    "0860b964-0b59-4d2e-913c-350ed2480c51",
+    "08858fb3-30f1-4127-ba3a-4dd84f01ad40",
+    "09698dd0-6577-4364-9fc6-da7064cbd3b9",
+    "0985f9c0-44e4-45f7-a47a-62dae31a7f88",
+    "099e4ad5-67ad-4776-84ca-3f71b5171821",
+    "09c693c6-b0e9-4bcc-8570-c4d028ed2f33",
+    "0b12ab14-7214-4c8e-804a-43277cfa63a7",
+    "0b49222e-1919-4391-ac91-3fecbfddd082",
+    "0b8b5241-d560-4f26-af7c-ac5e44a98cab",
+    "0d01f322-056e-49a4-aee9-e6f71a7bc5b4",
+    "0d108be3-eeed-47ad-b9df-ac42991cfb74",
+    "0ef26860-d00a-4e83-ac80-e17fd97bfb6b",
+    "0f1ceba6-5a93-42b0-a1a7-0b5ee2dcfd46",
+    "0f31bbdf-1493-4a14-9a67-c88ebaa1343a",
+    "0f829c70-031c-4ab1-b86f-031d092d8ed7",
+    "0f94e85a-8205-412f-814f-844dd902634f",
+    "0fd323e2-f4f1-4ceb-9161-11111602a970",
+    "1026f41e-c578-4722-867f-569de9685c17",
+    "10d4e65f-b828-4cc2-8001-bf84cd47c9e9",
+    "111fb35b-8313-4d6c-b632-0ba44b778136",
+    "11ad5dd0-5165-4ec8-9246-f8812f81e374",
+    "11ea125f-41f1-49bc-9618-6fc419a6f031",
+    "1226d404-7863-4c59-819d-d219c9460315",
+    "1266c807-3d95-477e-9a2b-73c8bd812f69",
+    "1370a99d-bb9b-4ebe-bbf1-5b3f01691c08",
+    "13cd6d78-cd0d-4653-9c12-f358ea5f44ad",
+    "14314174-3091-46e6-85bf-186ba146db8f",
+    "1631b661-b885-44d1-8aac-08b52e6d70b4",
+    "163b0210-675d-4834-84fa-7bbb5e1effb8",
+    "1901978e-b042-4fb2-9d48-5bd0ccc83c15",
+    "198d5eb5-ef66-4fae-9aa5-3aafefc86a20",
+    "19e8d62a-1613-4190-ba14-2dfe8da230a8",
+    "1af06919-2d4b-406e-9456-7133c3df51ff",
+    "1b8f1162-88e0-42b9-88fa-63839005e75e",
+    "1bd8b8fd-eae2-42d0-9c51-d8877210c01b",
+    "1c3dc1b2-e5bd-44e7-ad61-32a5d49274bf",
+    "1d40e642-ee26-4fc4-845e-02fddf1d886b",
+    "1dde3c14-4b18-412b-a213-b8101a02382c",
+    "1e370ab4-12f5-4af2-b793-ce473c272215",
+    "1e80d9c8-3393-4840-98dd-9f3344c4c60f",
+    "1eb40c47-fe5a-4f6a-ab2a-3c59b0954a13",
+    "1f4ac4d3-3829-4d25-beba-1d6b218e356e",
+    "20c1f6aa-f821-4e9a-aa9d-abc4ba3c74b5",
+    "20f86b96-904c-4e46-9d1d-59f06d5fc3c4",
+    "216bc1df-defb-4e5b-8b95-794a119dbc6f",
+    "21d54920-e773-4d53-8993-faa0d2b9ea6e",
+    "2327dcfe-f7d0-426c-bf65-503fc7bd84c6",
+    "2365d179-ce23-46ac-bcc7-8a11519ad62c",
+    "24c9c73a-13d9-4f72-b330-35aef0da16fc",
+    "24d7afca-4204-4748-80b5-f50c86083eac",
+    "250db6bd-6808-40f0-940c-9844a05fd655",
+    "252bff48-67de-4afd-9565-6beaffdb9be4",
+    "25b052f9-1d2d-4da7-9d4c-3278f1be7574",
+    "27e9de53-fc22-4fbc-b604-9de2f739d2a7",
+    "28a86120-80ca-4c13-8f3b-403b8867a435",
+    "2a9cf2a1-c0a2-4ed0-9364-cabc58e5522e",
+    "2aa5cc97-94d4-48ee-94a4-4647728c1e64",
+    "2aad96cc-d3a5-4ca8-b249-a162d1b3c0d0",
+    "2b8a812d-5bd3-4ca7-82ad-97394b3694f5",
+    "2c2da724-aff3-46ac-acfe-fe35ab0de7bc",
+    "2c4ec2e7-825e-49ae-bee6-a10e1a8e38b2",
+    "2d5767f5-3002-41c2-8bc1-ed88fe05f54d",
+    "2e0e9ba6-761e-4bb7-a812-8acceb51b09e",
+    "2e312e81-e390-4cdc-a921-51516065b37f",
+    "2e417a32-346c-44e4-9f6b-5e259272d357",
+    "2e69e658-93fc-483a-aea1-36508af2cc3a",
+    "2ef188fb-30d2-4fe9-9299-a39f770f9f65",
+    "2f8b1f91-d6a1-448b-aeb1-37e34eb1c043",
+    "30a59246-e544-4ea8-a3a2-c7c9509ebba2",
+    "30c71a15-68cc-4c6f-bc48-74b6607652a3",
+    "30e9ed42-ba0d-452c-84ec-d98d590d9a15",
+    "32e70a0e-dd58-479c-973e-758e936cebc8",
+    "333ada13-ebd7-4988-a34b-5852afadf24f",
+    "33c0f392-8f01-41c3-a742-6970380cb89a",
+    "34026e17-7445-4783-9c20-7cab8333a694",
+    "346b076b-133f-4b52-bc6c-d627a97adf28",
+    "349be379-1b18-44c9-b267-1b6fc304107a",
+    "35af3755-b213-43a5-b493-618444fb49a9",
+    "36067bc5-fcaf-4c38-96b8-9e7bf0c2f552",
+    "379746b0-6fde-451b-9da8-b9db1e76bcb0",
+    "37a628fa-76b1-4b27-9a5f-f4a5d7654279",
+    "38652eb0-fb0f-4119-8ba8-9efed220cb62",
+    "393331f2-70b5-4b9b-87de-a41e05f0b9ac",
+    "394c4e5d-4db4-4a60-87fa-cb1c7d5b1dc6",
+    "3b76e642-c7fa-4e1b-9e75-f3bd0e63ed75",
+    "3bc92ffb-7813-4312-887e-8b7d531ca4ae",
+    "3e03fe7b-39a4-42e7-9f80-ab82a2e7b149",
+    "3e2604af-0f9c-49b5-9ced-a497bcbcf403",
+    "3e335c5c-4d99-45fc-ac95-1b40362b2d79",
+    "3e72484f-9553-460d-b171-61d2b3382cb5",
+    "3eba5ced-0b66-4842-a954-c8c573a3a204",
+    "3f3dd112-13f4-4fbb-a52e-28d9e8815252",
+    "3f429a75-5f9c-4dbd-8604-f19124fa3b58",
+    "3fb46c75-e8ae-4043-9be9-37dd91b08d7c",
+    "3fbe281d-4cdd-494b-a173-6ccc06455b30",
+    "41052898-116c-4421-90f7-f961cd1365d9",
+    "412a29cd-c3fc-4497-91c2-4a6f65f6c946",
+    "42b38b9a-3dcd-4575-b9de-6c0fdb03e417",
+    "44135ad5-3349-4497-bf0c-a9544b1b3d1c",
+    "44284912-9582-4cdd-9ce2-af6fe592c81b",
+    "443dd1d3-fd4a-4ac0-8e8d-d74d839a9da8",
+    "44bc220c-f303-436b-80e7-d23d6358b711",
+    "450e73a8-8930-4f08-b4d3-07e24ed97a0d",
+    "4543960f-6c6a-45fb-b781-33b2a3a6ecd8",
+    "4572c4b5-64f1-47ce-a557-cbb736b3aeea",
+    "460fb4a6-c4eb-40d0-a6ef-ef4393b07947",
+    "461b6245-8c81-4335-897d-c017c8d765dd",
+    "46c79615-3f86-42d9-a88b-77d0222a7316",
+    "47121b30-4686-463d-b744-a27ca16a4514",
+    "473aaf6d-c216-4e40-9f16-31f50eeb96fc",
+    "47457b25-83fe-41a7-929e-f323c6d979fb",
+    "475c0669-cb41-4032-bc74-d5b98ca53077",
+    "4832b03d-5468-47f1-b816-b2a1960aa0b5",
+    "4885c891-9fc7-415f-bdf0-8bde7122bfc6",
+    "495a72c9-71d9-4c98-9a4a-d646151e8f1d",
+    "49b65633-c413-4995-8b71-b44f71550209",
+    "4afffc47-2ac6-4d1f-aa2e-0af47eaf7206",
+    "4b37b416-9af7-415e-8208-13be033b85f9",
+    "4bb4b26e-483d-4d4a-92ff-854af6509037",
+    "4c1bb68a-a3aa-4701-a227-3292f5209ff1",
+    "4c1e430e-d46e-493f-a7ad-b4981f6d0dfd",
+    "4c574180-6019-44e4-a009-31a6b33cf408",
+    "4c859450-6844-4a29-b608-4eb24ae9e438",
+    "4c912ae5-f056-4a02-8fe4-cd9892654592",
+    "4d49a61b-837f-429d-83ab-eeefbdef8af7",
+    "4d9aca4c-3837-4291-9413-4143838bcb90",
+    "4dedfcf8-6bc2-41b9-85ae-f96cf5c0ec37",
+    "4e7452f1-4959-41ab-ac34-f5fa6ac74987",
+    "4ebb6825-0403-4be7-a15b-e972e76190fd",
+    "4ed4c922-7fe0-491d-a5aa-f993d73c8f3a",
+    "4f629ab3-414f-416a-b4de-2ea0484202cf",
+    "4fa4e8af-a73b-4795-8d65-2b71266968ab",
+    "4fb21ecd-c43c-4984-a08a-12a33083a715",
+    "4fc19a16-2d67-44a9-b508-d21b9ed3893d",
+    "50b7cb7d-1afb-4bea-bc71-27fb4c4ab256",
+    "5116f31c-fdc4-4663-b1d3-bc04125ebe46",
+    "51912ed8-a279-4425-a4e8-168f6d3e9592",
+    "51b5dce7-0fb6-4c26-982a-569d9c3477dd",
+    "52ca56e9-0bac-441f-83bc-f6a006a71719",
+    "52f6be9e-3c7b-4ac1-803d-654a8167b6e7",
+    "5365eb16-180a-4e61-acf2-92198c23519e",
+    "537aec36-fd79-484b-85d7-bb70029fbc83",
+    "53a4c7e8-f6d5-4e8d-a71b-cfb6af3eba9b",
+    "53c5bf49-b6a0-496b-b886-4b0da0ff22fc",
+    "545ce5cf-7870-4a97-8f89-b7a1f74aa3c6",
+    "54e33320-ab13-4d2f-9b31-b999bae1f25e",
+    "55285475-ebb9-4a9d-bae6-23cebbba5dac",
+    "56fa7ef1-b7f3-4226-a003-ffe84fa0b24a",
+    "57820d77-61f1-4c17-a0f3-bedca9f8fbc9",
+    "57ecf06d-f2f0-47ea-bc5d-a8a28a37cf49",
+    "58652fe9-44f9-47e7-ac6e-ad192b7ee6dc",
+    "59b7c81d-c5be-4dde-b4e0-f59f5c623fe6",
+    "5a12bc03-c65a-4d31-870b-69097ab9fc04",
+    "5ab3d4a4-daa6-4b45-aec5-a8176efd59fe",
+    "5aba8f13-8fb4-45fd-87a0-3ebb710a3de0",
+    "5c3527d9-ee9b-4179-9461-2f4da3b41f78",
+    "5ca7e395-aa6f-4fb1-933a-6e725bed8d0c",
+    "5cce85d7-acd0-4a4d-bd0f-3f158b0cf6d1",
+    "5ce5f84a-3db4-4b31-87ae-00853bd5492b",
+    "5d5b74b1-d9f3-44eb-9e15-0b19d9a606cf",
+    "5d6f2b4a-bfad-4ea6-abbe-000234f1ff50",
+    "5d9a9e08-3ddd-464e-9f2f-4371d30d13c4",
+    "5de72f1e-bc25-447c-a082-2c39cbaef6e5",
+    "5deb012a-adfe-4e78-a758-b2323482ff79",
+    "5e1d4a78-e5e2-422f-838b-8d829930a361",
+    "5e4dfe01-15f6-4397-888d-0146434baad3",
+    "5fcb7fc2-10e1-4bbf-be51-d934ea73e161",
+    "5fd199d7-2070-4dd1-b87b-4bf90d9c96ea",
+    "604a1e43-0a2c-43ca-8072-dc9370059e3c",
+    "60965e0a-2e9f-420f-93a2-c7ff26f0a83b",
+    "6116f600-ce80-41ce-832c-e7f1e4ee2b72",
+    "63048da2-bace-4b78-ad5d-84be5f461fa5",
+    "63518c64-aa97-42b9-9786-c3c5770f0bfc",
+    "6466007d-ecd4-4c4e-895e-3d748922bec8",
+    "64ab864f-beec-4d68-98c5-6baf78e89de8",
+    "64b6f985-38f6-487a-a65b-b0ef60485dfc",
+    "66017da8-1625-443f-ae41-1adfd0f5746a",
+    "660ac69e-22bd-4c3e-8f7d-865550100ca4",
+    "66c4d150-4df0-4cc8-9d70-8360431ed7c8",
+    "66d941e1-0f03-4462-bcd9-bcb78162c54b",
+    "67c3e091-bde4-4218-9395-4b8889e42a48",
+    "67da53ab-e1a3-4624-bf3b-065512239c7c",
+    "68246185-3c0a-44ec-9900-bb28361dbdcc",
+    "68e3b65e-6920-460c-b381-abd7a80a7d06",
+    "69d979eb-2bb8-40d8-90ec-6ec2e698368b",
+    "6b2bb50a-2b9f-48e7-90fe-af35edaed029",
+    "6b3e5b78-2aa2-4595-b5bc-cf7dc0991935",
+    "6bbf70f5-c87b-4245-969a-cf5cd6c55120",
+    "6bd9d34c-4981-4427-935e-4b9004fdf572",
+    "6c08b003-47f4-490a-8db9-5e8e64317529",
+    "6df2ed38-6e55-4fdd-9ba6-ad911de566d9",
+    "6e93eb5d-67ba-4594-ac5c-d555cdca8560",
+    "6ea5b2e1-324f-404d-88c1-8c12f93af919",
+    "6f5f3935-1a30-4086-a1e2-ab09a2715c52",
+    "6faf1b75-04e6-465b-b703-571d8d8b9de8",
+    "700d974f-e166-4721-a31a-0c5ff52e2ffd",
+    "705fceb4-f280-478f-ba15-6bca43499639",
+    "7103c6ac-2457-4eae-861f-b83b45539357",
+    "71645528-50c4-431e-9599-be6da8ad4b1c",
+    "72246f2a-277c-41a4-8129-8b31c729e2a0",
+    "72356220-8282-414b-9257-17d224e0298e",
+    "726282ab-32c1-4b3e-a4c2-47ed065a1bc7",
+    "72933c79-dddb-4483-9d32-39503bff0ff1",
+    "72c0101f-9f3a-4e45-9e4c-78d38f30fbf5",
+    "73689925-550e-4481-9189-339817f96757",
+    "74eef522-beaa-42a5-9fe6-c82e23820725",
+    "754eee61-08f7-485b-8c67-603f1bfaa8fc",
+    "75e6264f-5b76-4133-a6bb-acd1029e972c",
+    "76c44644-dd96-4346-bdc1-8986b195c429",
+    "77037a5b-dcd6-4515-bc97-207527796637",
+    "771cb2c6-422a-4fd5-980d-15e74b82d138",
+    "77f75e0c-680a-4497-a2e6-f9a6e808f8b4",
+    "788059a2-92de-4ff0-b070-7172ee606915",
+    "78c99f29-aaf7-4986-b0b8-3fef9afd41d4",
+    "78eeaee3-da60-4b85-8ce5-29ff77975957",
+    "79086a0e-b8bf-4d62-a4f7-139fcf876232",
+    "7a51e505-f206-42d8-adde-c22b967dd636",
+    "7a6628bb-9f43-4ec2-a00d-7008c968cae2",
+    "7b1c2db1-a6e2-4f4b-ac7e-f09b03b9589d",
+    "7b2dfab7-1117-483f-bc06-cfce8e5d4db3",
+    "7b5b1cfc-8710-4007-b2c6-3a9a11d38124",
+    "7bd9f2e2-5d87-43f0-a6ea-0186f0c32cdb",
+    "7be58981-2112-4e37-9865-8a27cd66e59b",
+    "7bede66a-a75c-47b8-8454-8656a64afa36",
+    "7bf65783-f66d-40dd-8472-9ed3c9a0a9a3",
+    "7c9d7936-f383-4e0d-b194-7a4e17bfdcca",
+    "7cc1e192-5e31-467a-b60a-a269a0decfab",
+    "7e3c9ae6-b70c-4aaf-bdec-ab813548025b",
+    "7e72890a-387d-41a2-9121-ea827f0bc4d2",
+    "8012704b-c124-4e17-9a98-821379a35384",
+    "80321545-0bc3-45c7-8938-49f2d0cdab57",
+    "804061be-00cd-4bfe-9ada-47d41adec9ec",
+    "804d167b-c9b7-4441-9af2-5a76240a7771",
+    "80d66eb3-9dfb-4207-b115-8c31702582aa",
+    "817b2c60-3c8b-4b2d-99ae-df251d961a5e",
+    "818801da-9247-409d-9137-f71875e535b0",
+    "81b3ec04-1d02-4863-a85b-b2c19a81c6c7",
+    "81cb09aa-de54-454e-b1b1-ab4490cc5b7b",
+    "81dc5360-c29d-4619-931c-4f7e6e6f552a",
+    "81f6c9af-917c-46b9-8b4d-87d4310b7a4d",
+    "83539cf3-c9dc-4824-92b9-c8f1c56fa13d",
+    "8419a121-c833-4b88-8d2c-4904894842a8",
+    "842c1354-ed06-4239-8d51-6bea92cf8575",
+    "845a096b-14ef-4c94-9bc1-23d21e295509",
+    "847610fb-1ef0-484e-b35d-2c3655cf7101",
+    "84b854f4-cc8b-4e76-9a4c-b3df15acf13f",
+    "84c04f55-55a7-4822-8d97-258f418e38d5",
+    "86967936-87ec-4de1-a504-fe8648938328",
+    "885038bd-32f7-4908-b7e1-c0b1f6c45bed",
+    "88f33bf1-b07c-42af-b514-20cba1fbe0a3",
+    "88f64b62-c6b9-4ae3-bdc4-135fe62e5d00",
+    "8912e6b6-3cfa-44d4-ae19-4726ca8633c2",
+    "899eb4b3-2fee-47c2-b197-89acce801901",
+    "8a1143d1-e819-43b7-922b-533b3554c25b",
+    "8acd9c05-66fb-4c83-a504-7517d9f5bfb3",
+    "8af2a4d4-8113-47bf-984a-789c16e9cc4c",
+    "8b3fbcfc-7331-4265-a41a-0708fc930cf5",
+    "8b578b7a-8416-4909-87b5-a0284bc54fe3",
+    "8bddb9f4-efe9-4d6f-a11f-d485dabffd1f",
+    "8bf162f6-9bbb-4a64-bed9-9ed33a674793",
+    "8d017e20-9318-4a4b-ad4c-dcf8864a4a22",
+    "8d9d9351-8f55-4092-a9f1-c5e8f38d95a2",
+    "8dc1f1e3-fdc4-4ca4-85cd-9f2e65d16813",
+    "8e12fe2c-ada4-4d9d-95d2-0027f0b2716e",
+    "8e5d125c-43c0-4c91-ae90-503a83dbf1b2",
+    "8e8a1e65-3de6-4ee3-ad26-c87a868481de",
+    "8e90cdd3-dc0e-4395-8115-4dacaedbb431",
+    "8eccba60-ed36-4d9b-83de-e636168b9964",
+    "8efcd3ac-7235-4267-99ca-cd5956c2ae9b",
+    "8f14727e-f04c-4661-b6a3-a2588975a922",
+    "8f3a3db0-5f08-42f7-9012-04e66652b3a4",
+    "8f41a50c-e7e2-48ff-bbdf-89779b09ac06",
+    "8fea2bbf-13b5-4a0e-b56e-15ba631450e5",
+    "91175000-886b-45a3-b439-5eb106973efb",
+    "91437f8f-9cea-4d95-8909-fd0c9e7a5e04",
+    "914c1eb3-5e3f-4c12-ab70-fe505092fb72",
+    "92783dfd-7b48-418e-a4e7-6792e107b146",
+    "94795556-4218-4178-811a-37ffcbb41a17",
+    "94a028c2-0701-4d68-90a9-c31e011e90fa",
+    "94fb55bb-0dec-4d75-a83f-93da99ccd191",
+    "94fbfc43-b01a-4c9d-bcda-92116d0b1e41",
+    "9538fa32-8634-4954-afac-3af6f3e98c04",
+    "96f15c24-5392-4a66-b87d-d119382018e8",
+    "974a6e53-6f6b-4e0a-9e3b-6b9227058360",
+    "979d3970-c105-4d0f-9f40-34bd41e50f0f",
+    "979f9288-b825-407a-a793-ad04fe709819",
+    "99929bc7-1bea-430e-932b-cfebea81ac5e",
+    "9b5d1d4e-33ae-4a3b-b6e3-2bccb9a96372",
+    "9b8ddb55-81c4-4cac-87d0-20baf43ef692",
+    "9c3d7559-f06f-49f0-b330-1368cff3b9b3",
+    "9c4c5264-d938-426c-b016-900a3c479aad",
+    "9c9fac39-a24d-401a-96c7-03069b983c2f",
+    "9dee72d9-5f67-40fa-a11b-b3827bf63b74",
+    "9f0aa584-1659-49c9-b813-ab7d2cdf1c04",
+    "9f49f1f9-3caa-4ff4-9a88-e2681766f5eb",
+    "9f4c05dc-43ed-4894-8d31-40ea7c5e9c36",
+    "9f5f9c12-a1e9-4d2b-aaf0-a68d4d9e0448",
+    "9fa75f4f-251d-47a4-be28-3e18847a10f3",
+    "a00b1b15-45aa-49fe-84b2-2e834dfaa18f",
+    "a064cc79-da62-4f9a-afdd-5a6e6812dd67",
+    "a1bbf5f0-7b08-428c-bd0c-39d9f009363a",
+    "a27eb755-cb2e-43ed-8c4a-e982a0376b46",
+    "a4368ba2-2209-406b-b14d-7f5badfa2f2c",
+    "a49867a4-1b1d-48a7-ab99-94d86d909ba0",
+    "a4f0931c-189a-4a56-bc32-68ad4e8cfca9",
+    "a566a9e2-a9c9-4201-9f45-b896ca6fbc66",
+    "a577e3fe-2a08-402b-ad79-25c9e3b4f2a0",
+    "a67a2f5f-d655-454d-8718-6f27a4b07bba",
+    "a6e56bb4-e15e-4616-8cd1-91dfa3b1328e",
+    "a7cd7bba-8bf5-43f9-89be-9e2e9d584589",
+    "aa1a3591-3a46-4f99-a0c1-e1a8bc12d132",
+    "ab54b7b5-3c63-4c26-a1db-76ff766ebc36",
+    "ab8aaa8a-a070-4344-83d7-3d1b35f96739",
+    "ac4cc2df-8124-4dad-bdd5-2ce384a186c2",
+    "acd48d50-78f6-41d9-b0d3-ac11f17e5a1e",
+    "ad16171a-e01a-4002-a1e8-eef1a8d204b2",
+    "ad588d26-51c5-4c81-9365-2beb6cb347fb",
+    "ae6e62b4-edee-4761-92db-5578e8d21457",
+    "aeccaded-a9b2-4bff-a4c4-b9c498b8e07c",
+    "af6a5523-b90c-4bb5-b2c5-cd860296fb0f",
+    "af89e73f-8c4f-44e4-8b8b-706cbac96385",
+    "af902ba7-3f34-4700-a73b-5d6ea7bbb90c",
+    "afa015bb-fba4-43d7-b055-b5a6b9931ee8",
+    "b0e74a86-4843-4a47-8d2a-9124851df85c",
+    "b144485d-4a8d-4854-9f9d-aa85454a9be0",
+    "b19f5805-f1da-4904-abbf-828028e0f904",
+    "b2a22412-9094-43c8-9eaf-96d834a22b8b",
+    "b2a413da-edc9-4484-b675-9033244dc35c",
+    "b2bc78e4-b167-4e91-99c8-1f3258905c93",
+    "b3184994-3fbb-4901-9466-cb69a982b7f3",
+    "b32e062a-cef9-4e88-8150-ef83068d7379",
+    "b36b48e5-3e8f-4ddb-8311-ae9bf8e656cc",
+    "b39939e7-7420-4dcb-86c3-39f3704f40d0",
+    "b3f0fb8c-addc-4ba3-9ef9-d3e241f7b76f",
+    "b406b145-3925-4ce4-9ddc-18a94b39295f",
+    "b518e318-522d-4268-8df7-5c89f9e801e5",
+    "b592c155-bc10-46ad-975a-c89991c67ef9",
+    "b6f06549-8719-4df7-8b5a-3ea69a403ef5",
+    "b7424229-6614-437b-86b2-a8b92f395e9f",
+    "b7871eac-5864-4be7-9f64-e7b0c4b1654c",
+    "b795fe0f-e0ca-4bb9-a198-a82ec06a68ec",
+    "b7d435e9-9891-40cf-b6fe-e2d5000b53c2",
+    "b823521d-2698-40ff-85b9-7c650f373753",
+    "bb034d1d-6756-4157-a843-365f9ea9162f",
+    "bb05e857-9ab0-483f-ab0a-84b30ea8946d",
+    "bb63038e-f35f-47b4-bb15-262d93c716cd",
+    "bbb6f02e-e3ad-426b-ad82-4384a95d02f2",
+    "bc2ef5d1-6da7-4e9e-8e99-2d88d3543394",
+    "bc6519e9-b676-4e84-9cbf-77f4145644e9",
+    "bc947827-b024-4410-9dd4-2817c30690be",
+    "bca7ad63-4409-4cf3-98c7-7513fe907933",
+    "bd8858c0-3307-4b35-96f1-457f285e8e25",
+    "bdba5ec3-0c27-48a7-99ea-2b7606eeb439",
+    "be081fe9-32f2-4300-8296-ad6e5c42077f",
+    "bf841154-c942-43d3-97dd-a5aa5aa1a439",
+    "bfa22d6c-ac1b-4a08-8080-4f4d603f63ab",
+    "c016a548-21ab-47a2-b1a6-eaf754067496",
+    "c09e1e64-9509-47ff-824d-1f27339bde3b",
+    "c17cf711-a319-4d52-8c9f-8a976f15cf01",
+    "c1822272-71b3-4164-9d57-3a3f729fcec0",
+    "c1ce0085-0a6b-4fc4-97d4-9de12e25df78",
+    "c221f02d-f2dc-4662-8b6c-d8362644f767",
+    "c303881d-0177-4235-916f-b6a1b1835f95",
+    "c329578f-9b74-4182-911a-7114f2b9ff12",
+    "c35cd490-73fa-40f2-a955-09c28c037022",
+    "c37c8e5b-f8f9-428c-8b40-256cc30363ca",
+    "c38bbc12-b5ef-4ec6-beac-989f406eaa71",
+    "c41ac11f-fad1-48b2-a309-b4fd6b09f01f",
+    "c4476efb-f7d6-4e50-9e8e-cbbe2e60995f",
+    "c49a3ddb-ee65-4b4b-ad39-4a9abf2984da",
+    "c4c77bbb-3b2e-414e-b6af-c8eb446685dd",
+    "c5e905e4-0753-4607-b1e7-7ccea5b600a7",
+    "c5ffe8b3-076b-410a-98c1-cd0a3299d4d6",
+    "c61a7980-fee5-4481-8b8e-bba20ead571d",
+    "c6299126-cf3b-4977-bc3b-61a8976fabe4",
+    "c66bde0b-72ae-4f3b-81a8-4913794549f3",
+    "c739594a-ff30-4af5-8dd7-9295ab174a45",
+    "c757c8f7-1bdf-4d05-9786-931fcbd7551a",
+    "c7663131-a179-44c6-8877-9c79b4d5b607",
+    "c7859580-d69e-4e0f-92ad-24854d790c95",
+    "c7e08a43-7704-46f2-a048-3bf066636c16",
+    "c7fb48a2-f588-4bcd-9e09-ffcd22933d29",
+    "c86273a3-8db6-4d97-bc97-59deda1fbceb",
+    "c971b9d3-4194-4183-bbfa-85b1709b8707",
+    "c9f69725-7239-466b-ae22-e551ff64f295",
+    "cb386eb2-f322-4492-854b-7238c9f2c333",
+    "cb8ab671-7475-4463-92ab-cc020e289b29",
+    "cbcbd18c-402f-4bb9-b5b8-6a311d1030f1",
+    "cc733fc2-57e8-4be1-a2fe-3f13047a36a0",
+    "cc98478d-24df-420f-89c6-bab298758f59",
+    "ccad4775-6c5f-4528-8285-be9b93ed9356",
+    "cd253406-ce46-4edb-95f4-9165fcae0393",
+    "cde4b445-eef4-4150-90b1-d878c004d822",
+    "ce2a0f89-331d-40a5-96c5-f5a5423c801d",
+    "ce33b1b4-6c97-45b7-b3a2-64f0aaf4a81a",
+    "cec92364-99ed-4d9b-afea-529d7994b557",
+    "cfd9b6ca-bcb9-4447-adbf-5eb6200c1961",
+    "d16e4492-a830-4c5c-8391-948f0fc292e8",
+    "d176ddd1-d46b-4690-9c0f-ea9a90d4c2fd",
+    "d1796e52-0c01-47ef-a0c2-e8add1f43b8f",
+    "d214683e-112b-4ca5-8941-9c9358f538fe",
+    "d22a9533-a3b5-4eaa-a969-f25ef319ed4b",
+    "d29343ea-f3ec-496d-81cb-9bfd51eae269",
+    "d3748ca1-382e-4c17-b225-b5691e8a9f52",
+    "d3b4afee-9ab0-4470-b226-f94fc3ab7d7e",
+    "d3e253b8-4016-48d0-adac-4dffd6e3b93f",
+    "d4630ffe-2e96-4ea2-b9b2-916be3ce6739",
+    "d49b66d0-c416-48b0-8021-46446e6b8a4b",
+    "d4f487f0-e2fa-4c97-8cc2-5833d1fb796a",
+    "d5ab3c16-230f-49ca-a54d-0f4dd24f6709",
+    "d5b1c2fa-a4ba-4018-b8be-92054a51dc6e",
+    "d648a342-4a7e-4d9f-b082-e0ef5d51ec0e",
+    "d6c9db11-64b3-43f2-898f-8fe750910b5b",
+    "d6fbd6eb-4959-4b51-a462-a88eac7d9cf7",
+    "d83261e2-401b-4b6d-9785-679e865fd364",
+    "d86fcb3d-4efa-4139-a977-83f41ec507d3",
+    "da0b1456-10e3-4ad0-a31c-40f80bcc678c",
+    "dd6c5d8b-805f-4dc6-b09b-6fb328736d72",
+    "de061f5a-2954-4fff-b07c-0fb35bb6c838",
+    "deab7ce8-315b-4b9e-9f98-a52724a7bc42",
+    "deca1bfb-1baf-437e-8157-9cfb839abf2e",
+    "dfb5dc86-5c9b-4009-a434-79724c4f0314",
+    "dfc54a7c-be8b-4738-ba69-1e43bb273778",
+    "e0729340-2975-452f-a69c-4e08e1d643cc",
+    "e0ae1b1c-fdff-4791-9123-936973068cfa",
+    "e0f1d735-89d8-4fe8-838e-fe5a335ad7ba",
+    "e190c9c0-23c9-435a-93a7-c7f59f5e04cf",
+    "e1a00e54-dbd3-4105-a23c-3d87fd96156e",
+    "e1fa215f-24b4-47c2-8133-929c93a003b1",
+    "e2a081c2-6057-473f-94cb-f4cebf6f5c06",
+    "e3ca3c37-d1af-46e6-8a18-8829268c8b98",
+    "e3eecd84-d362-4f7c-b56b-9960c64a6dda",
+    "e42666a1-d055-4928-9db5-9067d99fae26",
+    "e5b46bbc-20bd-49ef-bf13-9c20f87a3e4a",
+    "e5fb3b80-84c1-4f7a-91f4-526ec83d445e",
+    "e7c2cc8b-4a82-403a-b15e-d115a7311e7c",
+    "e85b87d1-0180-49c6-9268-e0c87c945708",
+    "e9039322-3841-4dfe-834d-abd66cc984ab",
+    "e9b6266f-3cb6-4591-bd7d-5a4b07d6c58f",
+    "ea02de57-5392-48dc-8793-8616fddbc21e",
+    "ebc73415-4d03-4c34-a1bc-70f26c698e3b",
+    "ec054602-56cb-40b7-b43a-fca053c16f44",
+    "ec075f06-c9c7-4919-8096-9863b28f0a74",
+    "ec647bff-f135-480a-936a-1109ea2262c4",
+    "ed0f4ce8-0596-4793-b745-b8b74e63d8e9",
+    "ed2cc22c-ea7e-44d1-87d2-220deb0f7568",
+    "edba6c00-52ba-42f2-91f0-31c0010c1b2e",
+    "ee3f9c04-bc04-4855-a4be-7e551b51e9cf",
+    "ee601a73-4a5b-458a-a01c-eb0901cf3c44",
+    "ee93f1d9-c450-4bd4-9668-59334012c170",
+    "ee9f394f-9826-44aa-bed9-160df1e1cc7b",
+    "ef289a1d-387d-48f3-abf6-e3bd8a5c7fbd",
+    "ef451d42-8e4f-4ddf-bc55-d1a26690b76f",
+    "f13c8787-7664-4ccd-a362-5a7c7aa525b7",
+    "f14e5b77-0eb5-44ca-bfb8-6484047588ac",
+    "f269ec9e-2cef-46e1-8b9d-dd835dad7ef0",
+    "f2a9f6b0-00c3-40ab-99a4-6de865e8b609",
+    "f350aaeb-0afc-4e30-b542-850bb5461534",
+    "f3639487-5f86-42c3-844a-516c02550d85",
+    "f4f905a0-6f9f-4a51-ae91-3a1f0d787a42",
+    "f52cec6b-7afa-4f51-9f76-0e465d7c7853",
+    "f5863319-964f-4919-bdc3-173d2a219ec8",
+    "f6476c79-f206-45df-b9ce-922c0484f101",
+    "f69a095e-6960-4da7-9edb-ab6a659712b0",
+    "f6fc63c6-5a74-4705-9ec5-cd2e5628442b",
+    "f76e28b1-54eb-4141-a16a-102ac3026454",
+    "f7d2d6c5-ddb4-4f74-ad8c-9f0b4259cd0f",
+    "f8b10e77-4a0f-487f-8179-e49636b2ef9e",
+    "f8f183b0-bd4b-408c-b4e2-03882fdd7cbe",
+    "fa7cfc50-350c-4d0c-8922-51d5c422993a",
+    "fac3b524-af18-4946-8d9b-3a7ce13f9018",
+    "fb784364-3bc2-42c1-9766-b6ea94d81a06",
+    "fc0c2c01-aebe-4f0e-bcab-f916a9a86a68",
+    "fc52b5c5-3a38-4034-83f2-6270ba2a1919",
+    "fc62b9ec-ff35-48b9-86f9-4c4c900bcd80",
+    "fcf664fd-a5c4-42fa-8ed3-d4245f8b68c4",
+    "fd63ecf4-294e-4eaa-9897-05446f1ee9e5",
+    "fd90bb58-1abd-48ae-81db-b8f18742d875",
+    "fdd934c0-a4d0-4dfd-b636-207fb3c5314f",
+    "fe360919-4b3b-4af8-bc58-b9b3d79b5425",
+    "fef104af-358a-45ad-94d4-1cb85a2cdcff"
+  ],
+  "ground_truth": {
+    "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/gt/deepseek-v4-pro.jsonl",
+    "sha256": "e7c4e4683891dcb3283a14b477317a14766f1baf6c7ff395035e1fe58d3f8df8"
+  },
+  "runs": [
+    {
+      "config_id": "Chem-R__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/Chem-R__text/run01.jsonl",
+        "sha256": "f50a1c29fa9fe41c1739857c9a8c36b2c0e71eefec85a2709fecad364f2a24a5"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "Chem-R__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/Chem-R__text/run02.jsonl",
+        "sha256": "b892dd99cd2803754c0ed457280ee532cbc39b6be72824cce584a350c44c73f8"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "Chem-R__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/Chem-R__text/run03.jsonl",
+        "sha256": "8d7316dfd4eaa275b5e2190e1efff29047b39cc953b2e4d5dd623478f8608db8"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ChemDFM_R__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ChemDFM_R__text/run01.jsonl",
+        "sha256": "7bef4fac74ffa304d5f6f6b2fde45d7d415947448024fe4f2792622b3fb05903"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ChemDFM_R__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ChemDFM_R__text/run02.jsonl",
+        "sha256": "edb4fb07ad509b359bc5ef69445871b8da3f42f7e5a3117b68e73360f794360e"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ChemDFM_R__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ChemDFM_R__text/run03.jsonl",
+        "sha256": "e148381c71d667e4ff1333ae62c187656f5c613cb2de1ca2f0720c5bcb112a99"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ChemDFM_v2__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ChemDFM_v2__text/run01.jsonl",
+        "sha256": "c067d0c4d6e38823136a0a9cdb69477f4a2f260f02b431852964845ec65ef4a0"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ChemDFM_v2__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ChemDFM_v2__text/run02.jsonl",
+        "sha256": "0ba2f78fbc7de4c47c5bc863ee2c01ad19ffedc58dcbe1586a1bb74dc1eff884"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ChemDFM_v2__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ChemDFM_v2__text/run03.jsonl",
+        "sha256": "a53c1543829ee4b20de9c339d69a8c710e25ebea5ca9f128901c9c645d69a4a3"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "deepseek-v3_1-128k__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/deepseek-v3_1-128k__text/run01.jsonl",
+        "sha256": "99b3949baa70006d30e2cd00d72ab52101f40e46471ed477a11ea9b12e4a4ccd"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "deepseek-v3_1-128k__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/deepseek-v3_1-128k__text/run02.jsonl",
+        "sha256": "cb5a2ded3bd20595d8fbaee3a1d8519b7dde2f625cb10080daa1617556622b00"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "deepseek-v3_1-128k__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/deepseek-v3_1-128k__text/run03.jsonl",
+        "sha256": "5e11442265131a855598df7d44a9ee020942d385e9d1c3881bcb48029bb7b4b7"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "deepseek-v3_1-think-128k__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/deepseek-v3_1-think-128k__text/run01.jsonl",
+        "sha256": "db476a7dc0dc8288de886b5547e91b2bb7a179ba4572f3664a2e9f0ea3d5d034"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "deepseek-v3_1-think-128k__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/deepseek-v3_1-think-128k__text/run02.jsonl",
+        "sha256": "9941653d1f8d1b2dae842cd3bf83c5c37ace248c0e84f547874def193b585292"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "deepseek-v3_1-think-128k__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/deepseek-v3_1-think-128k__text/run03.jsonl",
+        "sha256": "e46c2678e8014a2e72f194d3ca9716a4fe777faab994d8590cc7996100d98a82"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "doubao-seed-1-6-251015_high__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/doubao-seed-1-6-251015_high__text/run01.jsonl",
+        "sha256": "a2dcdb729adcd9ee79c99869cf8a04384790797db6592089707d7e2f885894d3"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "doubao-seed-1-6-251015_high__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/doubao-seed-1-6-251015_high__text/run02.jsonl",
+        "sha256": "0bf968fe2db784a3d4fc1b16bc3859a740e48645c5e9b3361bbebc90f961ac63"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "doubao-seed-1-6-251015_high__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/doubao-seed-1-6-251015_high__text/run03.jsonl",
+        "sha256": "280a08558bdf85a22f869bb6a1cc5b338cc492ea92d4f877c11bbad11af0de9b"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ether0__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ether0__text/run01.jsonl",
+        "sha256": "fd1e1399f4a9515ca5105e6da34b93ad9c77b94e885afdb1c8fdfec4fde13137"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ether0__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ether0__text/run02.jsonl",
+        "sha256": "56a75a4ca4e845122134611bc769957f8165b4d76a96abac8636ce3dfeddd8bf"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "ether0__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/ether0__text/run03.jsonl",
+        "sha256": "c0c5808772f381b5146c1090cd8a82807b9f2430e58eb71fa9dfa6f2f99afeb5"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gemini-2_5-pro_high__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gemini-2_5-pro_high__multimodal/run01.jsonl",
+        "sha256": "85267b8623abee50d6775adc873d97e74927a0222528291f09db676c8df2402c"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gemini-2_5-pro_high__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gemini-2_5-pro_high__multimodal/run02.jsonl",
+        "sha256": "c72e87558b1d03bd2631dd419289d1e6873a892d05ac3895ee93f9c9fada1335"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gemini-2_5-pro_high__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gemini-2_5-pro_high__multimodal/run03.jsonl",
+        "sha256": "af0d05e5e8174e1272d8df9bbb6612507c177caac222a1b2bf69edf32e9f5112"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gemini-2_5-pro_high__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gemini-2_5-pro_high__text/run01.jsonl",
+        "sha256": "09cb0d667ec5ff8207a4414255485ca6f3310684e722d0970b96064b516d1614"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gemini-2_5-pro_high__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gemini-2_5-pro_high__text/run02.jsonl",
+        "sha256": "c2aac17156197b3bec092face082edd9a3ede615c9ad785a15cc0d56abb85ae2"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gemini-2_5-pro_high__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gemini-2_5-pro_high__text/run03.jsonl",
+        "sha256": "a45efe97a80aa28977007b706c4f336f690e0526186812297240515f8bce2e86"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4_1__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4_1__multimodal/run01.jsonl",
+        "sha256": "a20de87dd2bdccddd86e66f1de8e0aa73dffc5637d6e991a618cf2b6a4a5fc84"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4_1__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4_1__multimodal/run02.jsonl",
+        "sha256": "c8986ffc6193355390c02b72b8c546bb94d2ecfca3fda509e8ef1e346b2ba125"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4_1__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4_1__multimodal/run03.jsonl",
+        "sha256": "16e3e9a33a99b3562cdc07e71f2c92607ce1bf04181d76429b502c2f86bfeb82"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4_1__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4_1__text/run01.jsonl",
+        "sha256": "a2f747b247af4c542563cc563beb2e51a455fc6fc63327efdc612aef61998a01"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4_1__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4_1__text/run02.jsonl",
+        "sha256": "0e0f8dbe942f2b5135db927267901a70ec1571b0b3b06393ad3611890fafceae"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4_1__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4_1__text/run03.jsonl",
+        "sha256": "ab8a36cce7fd6b50e8c0db2f34699c1006021e8b202090fee8b5e02157b69d94"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4o-2024-11-20__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4o-2024-11-20__multimodal/run01.jsonl",
+        "sha256": "3b385e0515cb4a7e84b6eb16f286a6d0c632b0f638f1dee69e4eaccaae60f867"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4o-2024-11-20__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4o-2024-11-20__multimodal/run02.jsonl",
+        "sha256": "a5fc78f2c9518fadb0674b57e987f4d7af8d3e667079f290e1e2d4527f2699be"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4o-2024-11-20__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4o-2024-11-20__multimodal/run03.jsonl",
+        "sha256": "e09c8f465c1d094b8d35ace21d5b1dc0dfb1d9e9d808073d466bc8e7f059b1d8"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4o-2024-11-20__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4o-2024-11-20__text/run01.jsonl",
+        "sha256": "75815d23549a9fd35575601766ca5b448352b87442862bd2a67c6e2353276990"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4o-2024-11-20__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4o-2024-11-20__text/run02.jsonl",
+        "sha256": "862236926621959fe2835ba14123e2fce1e4dd24e3bddac99c2da45be2f240fe"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-4o-2024-11-20__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-4o-2024-11-20__text/run03.jsonl",
+        "sha256": "89d6238a5d790c37bc9adef4ef6fb9094f406bf97cc18d1d2da1657b0fc777f5"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_high__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_high__multimodal/run01.jsonl",
+        "sha256": "3abf764559f9297e88b421c5d0ea07ca1e086553148f51fd912bf19bbc6bfa48"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_high__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_high__multimodal/run02.jsonl",
+        "sha256": "150e7750a8fe48793a43a9bbe3b689f1c2b4d8b091d3214bb1edf2ecdfbac0d9"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_high__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_high__multimodal/run03.jsonl",
+        "sha256": "a98c570de32809286115eb1ee4470be41d2c6f6c1a4c4cbb7bc2548a959c1ce8"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_high__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_high__text/run01.jsonl",
+        "sha256": "6045b2aa8f57fe790e455a367482e950da9536bb8960d8bdb3f30ffba108ae79"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_high__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_high__text/run02.jsonl",
+        "sha256": "9457bb004c29a337e23235baa639065ae7bf8a3d3dd76b9f0eda893d016ec17c"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_high__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_high__text/run03.jsonl",
+        "sha256": "72d3fc36145caf6d5822115a5a02dc684974cd6fd770d12e54e5604dbe34b234"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_low__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_low__multimodal/run01.jsonl",
+        "sha256": "a8fbcde8e9707d718c998ea395bd93c70b3797b6149abcc28f10d7eb2f6c0ea7"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_low__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__multimodal/run02.jsonl",
+        "sha256": "48c021eae6cc2530c0a70abf2e7946166fb31aa15d17e011de63203e7e5d99d1"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_low__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__multimodal/run03.jsonl",
+        "sha256": "2c23bafaae0274ed6a96fed5a0409ce32c60bbd01965634a7e531abf29ddc953"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_low__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_low__text/run01.jsonl",
+        "sha256": "e58318b2307ecb3c68d2d0fcca767fd70d9de5e51801ce3a9983310dd08d7ebd"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_low__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__text/run02.jsonl",
+        "sha256": "a09cfb5583797a41ecec3c469877c00889cfb7508ff43adad58ca3c5bac43bee"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_low__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__text/run03.jsonl",
+        "sha256": "aab31a698dd4f665925c97131290924a58fa1701b48bb5b6eba2a6da00f701f8"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_medium__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_medium__multimodal/run01.jsonl",
+        "sha256": "810c610880692b4eda1226506132f547af54708553c47dd579c77ff6c06d6d96"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_medium__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__multimodal/run02.jsonl",
+        "sha256": "03f1b0224cc90abb483dcc3fe2e3c132aa72be46461b177848450d10e438609f"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_medium__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__multimodal/run03.jsonl",
+        "sha256": "e1950afb7e0216c26287d3caf97b40283fc4a5bab54671df883e0d3612d274a0"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_medium__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_medium__text/run01.jsonl",
+        "sha256": "dd2a732fdb8c5d5cacc5b144ee0148c84e85d7ff4c32a6e78553b2258d20f9ef"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_medium__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__text/run02.jsonl",
+        "sha256": "2ef4e147a90ee437a34e6349c735fc42fd02ba417a47d282a4ad0137c9bd6a22"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_medium__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__text/run03.jsonl",
+        "sha256": "e3d73c812aa8fe11766bf7200367826fc94c156bca7b4746ac95af964f8f7ec1"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_minimal__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_minimal__multimodal/run01.jsonl",
+        "sha256": "f7b5e224472a4f946efdf54895ebeb9f86bfef443abc2d26f820a61949c7796c"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_minimal__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_minimal__multimodal/run02.jsonl",
+        "sha256": "1027569f35c3e9db1e72d8b8736a62fa6c4611c99166ba980468a5de5d4e295f"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_minimal__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_minimal__multimodal/run03.jsonl",
+        "sha256": "7588e3293d3cbbe11ecc8ea8d0110be932c079e4e0e58d542f61d07144415629"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_minimal__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_minimal__text/run01.jsonl",
+        "sha256": "02b539e14eeccf26237741b11b5608f7d287a8fce642161581a0b45bd37202aa"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_minimal__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_minimal__text/run02.jsonl",
+        "sha256": "b38b1d7ed8d158f7af856a2a2e5527dcbfe179e00de1912a2bf167fdeecc21ad"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "gpt-5_minimal__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_minimal__text/run03.jsonl",
+        "sha256": "83d1d0b845d222f83ae19c04def88080e440eb77f8e06185d77e95a1d638cf23"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "o3-2025-04-16_high__multimodal",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/o3-2025-04-16_high__multimodal/run01.jsonl",
+        "sha256": "70a836f751874bf00d83728a1681e567fbbf009b804ff3dd1e1c5407b377b767"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "o3-2025-04-16_high__multimodal",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/o3-2025-04-16_high__multimodal/run02.jsonl",
+        "sha256": "f8ed4d28dfbeef78b2878777873b8e8fa5e6e494a543fa02677983163225e081"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "o3-2025-04-16_high__multimodal",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_o3_real_rep03_ds_gt_v4_addon_20260909/data/answers/o3-2025-04-16_high__multimodal/run03.jsonl",
+        "sha256": "586235d5f33feb7271bada0587a29a1642bb4120542f2cf330497ab5f882a78b"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "o3-2025-04-16_high__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/o3-2025-04-16_high__text/run01.jsonl",
+        "sha256": "344518899cae7b39683e7d5345cfc648a03b3878d7b27ca15d0ff9387642588e"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "o3-2025-04-16_high__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/o3-2025-04-16_high__text/run02.jsonl",
+        "sha256": "c10ffb12b453ecdb057bc04c0dc5eb05ec32ace28783d1204463894d1d1cbade"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "o3-2025-04-16_high__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_o3_real_rep03_ds_gt_v4_addon_20260909/data/answers/o3-2025-04-16_high__text/run03.jsonl",
+        "sha256": "204b6c740e938cac23ac9d2a22c0adc95d28d41bcbe60ee23699758d355bbca9"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "qwen3-235b-a22b-instruct-2507__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/qwen3-235b-a22b-instruct-2507__text/run01.jsonl",
+        "sha256": "2a57dc7af6501657d8348fead38d215d93b28966d44233b5cce683ab202b9ee2"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "qwen3-235b-a22b-instruct-2507__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/qwen3-235b-a22b-instruct-2507__text/run02.jsonl",
+        "sha256": "208a52beb054429f9a97e111382e62933872908637e0fd759441a383c0d0f90e"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "qwen3-235b-a22b-instruct-2507__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/qwen3-235b-a22b-instruct-2507__text/run03.jsonl",
+        "sha256": "7a04f4fefdcf84e434643214131b8a7cff370aa867c8438dd3d6ee64967189f5"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "qwen3-235b-a22b-thinking-2507__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/qwen3-235b-a22b-thinking-2507__text/run01.jsonl",
+        "sha256": "42ca51fe6495107759d8819056acceb2bfc50010a4c0c888c781fa2634b37bd0"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "qwen3-235b-a22b-thinking-2507__text",
+      "replicate": 2,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/qwen3-235b-a22b-thinking-2507__text/run02.jsonl",
+        "sha256": "0f0085a3267756722d9b93ad685dd48c734025c72013271e52b29276e9a60da8"
+      },
+      "matches": null
+    },
+    {
+      "config_id": "qwen3-235b-a22b-thinking-2507__text",
+      "replicate": 3,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/qwen3-235b-a22b-thinking-2507__text/run03.jsonl",
+        "sha256": "3b7e3189042eb649badb3eeb6eab19ed594bba944150d58399997d7924423172"
+      },
+      "matches": null
+    }
+  ],
+  "replacements": [
+    {
+      "config_id": "gpt-5_low__text",
+      "replicate": 2,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_low__text/run02.jsonl",
+        "sha256": "a33958bdb321a0026684707afed26d9201cf46ebb1b720452111e38703b3de40"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__text/run02.jsonl",
+        "sha256": "a09cfb5583797a41ecec3c469877c00889cfb7508ff43adad58ca3c5bac43bee"
+      }
+    },
+    {
+      "config_id": "gpt-5_low__text",
+      "replicate": 3,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_low__text/run03.jsonl",
+        "sha256": "4b06a3f6b432491bd7134d128b92820a1ed866845cfb893bdbf3771e87e71589"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__text/run03.jsonl",
+        "sha256": "aab31a698dd4f665925c97131290924a58fa1701b48bb5b6eba2a6da00f701f8"
+      }
+    },
+    {
+      "config_id": "gpt-5_low__multimodal",
+      "replicate": 2,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_low__multimodal/run02.jsonl",
+        "sha256": "5a2b0f45100c2981af5108dfa36babd3b7786bbcc2ed8a136af3c50d5fb5fa49"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__multimodal/run02.jsonl",
+        "sha256": "48c021eae6cc2530c0a70abf2e7946166fb31aa15d17e011de63203e7e5d99d1"
+      }
+    },
+    {
+      "config_id": "gpt-5_low__multimodal",
+      "replicate": 3,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_low__multimodal/run03.jsonl",
+        "sha256": "1676b94257c9bc53168df9c745b2db3bbf36339d88be067ad72de66e6c09115a"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_low__multimodal/run03.jsonl",
+        "sha256": "2c23bafaae0274ed6a96fed5a0409ce32c60bbd01965634a7e531abf29ddc953"
+      }
+    },
+    {
+      "config_id": "gpt-5_medium__text",
+      "replicate": 2,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_medium__text/run02.jsonl",
+        "sha256": "9615b81b6f5079cfdaf5ab3304f190ae432ba96e6731c53bba7ae4de5ba9dc32"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__text/run02.jsonl",
+        "sha256": "2ef4e147a90ee437a34e6349c735fc42fd02ba417a47d282a4ad0137c9bd6a22"
+      }
+    },
+    {
+      "config_id": "gpt-5_medium__text",
+      "replicate": 3,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_medium__text/run03.jsonl",
+        "sha256": "254ff22909fb8bb3c9d7b3c8beedac76018323279f450110af48be3acc7b3936"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__text/run03.jsonl",
+        "sha256": "e3d73c812aa8fe11766bf7200367826fc94c156bca7b4746ac95af964f8f7ec1"
+      }
+    },
+    {
+      "config_id": "gpt-5_medium__multimodal",
+      "replicate": 2,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_medium__multimodal/run02.jsonl",
+        "sha256": "5257dccfb9b8f77de52339b4b44b32a9ea53f69ed14f8e5a44ef880aee27f800"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__multimodal/run02.jsonl",
+        "sha256": "03f1b0224cc90abb483dcc3fe2e3c132aa72be46461b177848450d10e438609f"
+      }
+    },
+    {
+      "config_id": "gpt-5_medium__multimodal",
+      "replicate": 3,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_medium__multimodal/run03.jsonl",
+        "sha256": "0444ac162f0594d8bf8d472825d5681abacb94a559e5863dd4219eac07512dff"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_replacement_ds_gt_20260910/data/answers/gpt-5_medium__multimodal/run03.jsonl",
+        "sha256": "e1950afb7e0216c26287d3caf97b40283fc4a5bab54671df883e0d3612d274a0"
+      }
+    },
+    {
+      "config_id": "gpt-5_low__text",
+      "replicate": 1,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_low__text/run01.jsonl",
+        "sha256": "d7f5d5d40587d438d7e3611af87e322d80c8b94e402da2f2b1cbd4fb2e6fd50a"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_low__text/run01.jsonl",
+        "sha256": "e58318b2307ecb3c68d2d0fcca767fd70d9de5e51801ce3a9983310dd08d7ebd"
+      }
+    },
+    {
+      "config_id": "gpt-5_low__multimodal",
+      "replicate": 1,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_low__multimodal/run01.jsonl",
+        "sha256": "1485bd8a21b4617b5c4e755d9f7b35311527fcb6764d6f7cb8c2c65e195791ed"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_low__multimodal/run01.jsonl",
+        "sha256": "a8fbcde8e9707d718c998ea395bd93c70b3797b6149abcc28f10d7eb2f6c0ea7"
+      }
+    },
+    {
+      "config_id": "gpt-5_medium__text",
+      "replicate": 1,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_medium__text/run01.jsonl",
+        "sha256": "0abde5eb9c91838fb55eee292f2f7a9c2fcab197ee1eb54f66336b65c7f14684"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_medium__text/run01.jsonl",
+        "sha256": "dd2a732fdb8c5d5cacc5b144ee0148c84e85d7ff4c32a6e78553b2258d20f9ef"
+      }
+    },
+    {
+      "config_id": "gpt-5_medium__multimodal",
+      "replicate": 1,
+      "old": {
+        "path": "../DAG_full_repeats_ds_gt_v4_handoff_20260909/data/answers/gpt-5_medium__multimodal/run01.jsonl",
+        "sha256": "6e5410b8bae84b3093170a886da3f4f8c9c317fb58724e521864a41ad421af24"
+      },
+      "new": {
+        "path": "../DAG_gpt5_low_medium_rep01_ds_gt_20260910/data/answers/gpt-5_medium__multimodal/run01.jsonl",
+        "sha256": "810c610880692b4eda1226506132f547af54708553c47dd579c77ff6c06d6d96"
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "formula_version": "original-rpf-v1",
+  "state": "historical_demo",
+  "description": "Historical Gemini 2.5 Pro text sample; not final manuscript results. Extractor/judge provenance is not inferred from target model name.",
+  "question_ids": [
+    "1266c807-3d95-477e-9a2b-73c8bd812f69",
+    "72933c79-dddb-4483-9d32-39503bff0ff1",
+    "9b8ddb55-81c4-4cac-87d0-20baf43ef692",
+    "ef451d42-8e4f-4ddf-bc55-d1a26690b76f",
+    "fef104af-358a-45ad-94d4-1cb85a2cdcff",
+    "b2a413da-edc9-4484-b675-9033244dc35c",
+    "cde4b445-eef4-4150-90b1-d878c004d822",
+    "c7fb48a2-f588-4bcd-9e09-ffcd22933d29",
+    "7e72890a-387d-41a2-9121-ea827f0bc4d2",
+    "05ba7cae-3682-44dd-9018-f1bff6001ef3"
+  ],
+  "ground_truth": {
+    "path": "ground_truth_graphs_detail.jsonl",
+    "sha256": "f47c2b7fc0880f22213ba947e3604a0f129119cab5a2ba22ba9a496c583c770f"
+  },
+  "artifacts": [
+    {
+      "path": "questions_demo.parquet",
+      "sha256": "2659c8548f9d82c464f53e4c035df978bdab1e9a6d544109f109b949003e339d"
+    },
+    {
+      "path": "dataset_split_map.json",
+      "sha256": "e420a3d565c91111710b30ad520e8c39d00f39aa19f9d6d8cf89a6679b844c3f"
+    },
+    {
+      "path": "20251015_baseline_demo.csv",
+      "sha256": "78e75a299f6052e659db4f90bf99d341f10d6c756a783881173356663a095f23"
+    }
+  ],
+  "runs": [
+    {
+      "config_id": "gemini-2_5-pro_high__text",
+      "replicate": 1,
+      "independent_generation": true,
+      "synthetic_resample": false,
+      "answers": {
+        "path": "20251014164938_questions_release_en_false__gemini-2_5-pro_high__1_0_1.jsonl",
+        "sha256": "3d3588f253e1a10615969c735c13329a79d36dca49c2b7b1417da11700e5cbc4"
+      },
+      "matches": {
+        "path": "precomputed_matches.jsonl",
+        "sha256": "85aa43a909dfec7c043eb28f8c4a3c1ff5f6c753e13513b52367a811c98fd470"
+      }
+    }
+  ]
+}

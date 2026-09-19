@@ -17,11 +17,31 @@ This repository contains the official evaluation framework for **SUPERChem**, an
 Verify your environment with bundled sample data (Gemini 2.5 Pro answers, no API key):
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-offline.txt
 python demo/run_demo.py
 ```
 
 See [demo/README.md](demo/README.md) for file descriptions and DAG_eval usage with the same sample.
+
+The demo now verifies frozen file hashes and reproduces **ACC, RPF, node-only,
+branching factor and dangling count** from historical precomputed matches, without
+API keys. It is a reproducibility example, not the final revised-paper leaderboard.
+
+### Offline evaluation entry point
+
+Run from the repository root:
+
+```bash
+python -m superchem validate --manifest demo/manifest.json --require-matches
+python -m superchem metrics --manifest demo/manifest.json --output outputs/demo_metrics
+python -m unittest discover -s tests -v
+```
+
+The metrics command refuses to overwrite an existing output directory. Outputs
+include per-question metrics and per-run means/sample variances. See
+[the release protocol](docs/release_protocol.md) for formulas, data versions and
+failure handling. Legacy API generation scripts remain under `eval/`; archived
+handoff packages are not modified by the offline entry point.
 
 ---
 
@@ -29,48 +49,59 @@ See [demo/README.md](demo/README.md) for file descriptions and DAG_eval usage wi
 
 ### Software dependencies
 
-Install from the repository root:
+For the broader legacy API/analysis tools, install from the repository root
+(the offline demo only needs `requirements-offline.txt`):
 
 ```bash
 pip install -r requirements.txt
 ```
 
-| Component | Version (tested) |
+| Component | Dependency scope |
 |-----------|------------------|
-| Python | 3.10, 3.11, 3.12 |
-| pandas | 2.x |
-| pyarrow | 14.x–21.x |
+| Python | Offline code supports 3.10+; local verification used 3.13.12 |
+| pandas | Offline: 2.x–3.x; legacy full environment: 2.x |
+| pyarrow | Offline: 14.x–24.x; legacy full environment: 14.x–21.x |
 | openai | 1.x–2.x |
 | PyYAML, loguru, tqdm | see `requirements.txt` |
 | networkx, matplotlib | for `DAG_eval/` |
 | plotly, scipy, seaborn, Pillow | for `analysis/` |
 | streamlit | for `DAG_eval/view/` (optional) |
 
-### Operating systems tested
+### Verified environment
 
-- Ubuntu 22.04 / 24.04 LTS
-- macOS 14+ (Apple Silicon and Intel)
+The offline demo and tests were run on Linux x86_64, Python 3.13.12,
+pandas 3.0.3/3.0.5, pyarrow 24.0.0 and networkx 3.6.1 (including a fresh,
+isolated install from the local package cache). Python 3.10/3.12 Linux
+jobs are configured in CI; their configuration is not proof of a completed run.
+macOS/Windows and the complete API/visualization environment were not retested
+in this release review. `requirements-offline.txt` is sufficient for the demo;
+`requirements.txt` retains the broader legacy API/analysis/viewer dependencies.
 
 ### Hardware
 
 - **Demo / accuracy scripts:** standard desktop or laptop (CPU only).
 - **Full benchmark inference (`eval/`):** network access to your LLM API; no GPU required in this repo.
-- **DAG / RPF pipeline (`DAG_eval/`):** API access to judge models; optional external [molecule comparison service](https://github.com/tom832/chemdraw-server) for structure matching (see `DAG_eval/README.md`).
+- **Offline DAG scoring:** CPU only, no network/API required.
+- **API DAG matching (`DAG_eval/`):** judge access and either the external [ChemDraw service](https://github.com/tom832/chemdraw-server) or local **OPSIN + RDKit**. The open-source backend needs a Java JDK for setup, but no molecular-service key. See [backend setup and switching](docs/mol_compare.md).
 
 ---
 
 ## 2. Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/tom832/SUPERChem_eval.git
 cd SUPERChem_eval
 python3 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp eval/config.yaml.sample eval/config.yaml    # then add API keys for full eval
+pip install -r requirements-offline.txt
+python demo/run_demo.py
+# Optional: install the broader legacy API/analysis environment separately.
+# pip install -r requirements.txt
+# cp eval/config.yaml.sample eval/config.yaml
 ```
 
-**Typical install time:** 2–5 minutes on a normal desktop (depends on network speed).
+Installation time depends on network access and wheel availability; a fresh
+network installation was not timed in this review.
 
 ---
 
@@ -85,14 +116,16 @@ python demo/run_demo.py
 | Item | Value |
 |------|--------|
 | Data | 10 questions + Gemini 2.5 Pro (text-only, high) answers in `demo/` |
-| Expected output | Printed pass@1 accuracy (~50%, 5/10) and per-UUID scores |
-| Expected runtime | &lt; 5 s (after `pip install`) |
+| Expected output | ACC 50% (5/10), RPF 0.516569, node-only 0.599534, BF 0.220613, DC 0 |
+| Expected runtime | Seconds for 10 questions after installation; hardware-dependent |
 
 ### Demo contents
 
 - `demo/questions_demo.parquet` — questions
 - `demo/20251014164938_questions_release_en_false__gemini-2_5-pro_high__1_0_1.jsonl` — model outputs
 - `demo/ground_truth_graphs_detail.jsonl` — expert reasoning graphs for RPF
+- `demo/precomputed_matches.jsonl` — historical matches for exactly these answers/GT
+- `demo/manifest.json`, `demo/expected_metrics.json` — input hashes and regression values
 
 ---
 
@@ -113,9 +146,30 @@ Details: [eval/README.md](eval/README.md).
 
 ### Reasoning Path Fidelity / DAG evaluation (`DAG_eval/`)
 
+For local open-source chemical name/structure comparison:
+
+```bash
+pip install -r requirements-mol.txt
+python script/install_opsin.py
+python -m superchem mol-compare --backend opsin --mol1 ethanol --mol2 CCO
+```
+
+Set `mol_compare.backend: opsin` in the YAML or pass
+`--mol-compare-backend opsin` to `DAG_eval/src/match_dag.py`.
+`chemdraw` remains available and is the backward-compatible default.
+OPSIN failures/ambiguity are reported as unknown, not unequal. See
+[comparison policy, limits and tests](docs/mol_compare.md).
+
+**Protocol note:** the shell pipeline below is the historical semantic
+validation/rematch workflow. The revision handoff workflow combines extraction
+and matching in one call, followed by up to three recovery rounds for failed or
+structurally invalid outputs. These are distinct protocols. For offline scoring,
+use `python -m superchem metrics`; for final manuscript configuration status,
+see [docs/release_protocol.md](docs/release_protocol.md).
+
 1. Place questions parquet, model answers jsonl, and `ground_truth_graphs_detail.jsonl` under `DAG_eval/data/`.
 2. Copy `DAG_eval/src/config.example.yaml` → `DAG_eval/src/config.yaml`.
-3. Run `./run_full_pipeline.sh` or individual steps in `DAG_eval/src/`.
+3. Run `cd DAG_eval && bash run_full_pipeline.sh` or individual steps in `DAG_eval/src/`.
 
 Details: [DAG_eval/README.md](DAG_eval/README.md).
 
@@ -131,7 +185,23 @@ Details: [analysis/README.md](analysis/README.md).
 2. Run `analysis/calc_pass_withbaseline.py` for accuracy tables.
 3. Run plotting scripts (`draw_radar_plotly.py`, `pass_k_curve.py`, etc.) with paths pointing to your `data/` files.
 
-Exact figure-to-script mapping may vary by revision; use filenames in `results/` as a reference for expected outputs.
+Final revised figure-to-input mappings are pending reconciliation with the final
+returned matches; historical files in `results/` are not a final release manifest.
+
+### Release hygiene
+
+Current human baseline files use consistent `participant_###` pseudonyms. Old
+Git objects and archived deliveries still retain the original identifiers;
+do not distribute `.git/`, local API configs, or the complete research workspace
+as a sanitized release. A read-only current-file check is available:
+
+```bash
+python script/check_release_safety.py --report outputs/release_review/safety_scan.json
+```
+
+It reports locations/counts, never matched secret values. The scan is heuristic
+and does not replace review of image/PDF contents or historical data.
+See [the review record](docs/release_security_review.md) for scope and test results.
 
 ---
 
@@ -145,7 +215,12 @@ Exact figure-to-script mapping may vary by revision; use filenames in `results/`
 
 ## Abstract
 
-Current benchmarks for evaluating the chemical reasoning capabilities of Large Language Models (LLMs) are limited by oversimplified tasks, ceiling effects, lack of process-level evaluation, and misalignment with expert-level chemistry skills. To address these issues, we introduce **SUPERChem**, a benchmark of 500 expert-curated reasoning-intensive chemistry problems, covering diverse subfields and provided in both multimodal and text-only formats. Original content and an iterative curation pipeline eliminate flawed items and mitigate data contamination. Each problem is paired with an expert-authored solution path, enabling *Reasoning Path Fidelity* (RPF) scoring to evaluate reasoning quality beyond final-answer accuracy. Evaluations against a human baseline of 40.3% accuracy show that even the best-performing model, GPT-5 (High), reaches only 38.5%. By combining high difficulty, controlled multimodality, and process-level metrics, SUPERChem provides a rigorous platform for diagnosing and advancing AI chemical reasoning toward expert-level scientific inquiry.
+**SUPERChem** contains 500 expert-curated chemistry reasoning problems in text-only
+and multimodal formats. Expert-authored checkpoints support process-level
+evaluation with *Reasoning Path Fidelity* (RPF), alongside final-answer accuracy.
+The benchmark evaluates long-chain chemistry problem solving; it does not directly
+measure autonomous scientific discovery. Numerical rankings for the revised paper
+will be linked to a final, versioned input-and-result manifest after reconciliation.
 
 ---
 

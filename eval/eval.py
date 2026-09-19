@@ -5,6 +5,10 @@ import multiprocessing as mp
 import os
 import re
 import time
+try:
+    from .cli_utils import parse_bool
+except ImportError:  # Direct execution: python eval/eval.py
+    from cli_utils import parse_bool
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from threading import Lock, Thread
 from typing import Dict, List, Union, Optional
@@ -65,7 +69,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--reasoning-effort', type=str, default=None, choices=['low', 'medium', 'high'], help='Reasoning effort for the model\'s output.')
     parser.add_argument('--temperature', type=float, default=1.0, help='Temperature for the model\'s output.')
     parser.add_argument('--language', type=str, required=True, choices=languages, help='Language of the model\'s input.')
-    parser.add_argument('--multimodal', type=bool, required=True, help='Whether the input is multimodal or not.')
+    parser.add_argument('--multimodal', type=parse_bool, required=True, help='Whether the input is multimodal (true/false).')
     parser.add_argument('--pass-k', type=int, default=1, help='Number of passes to evaluate.')
     parser.add_argument('--max-retries', type=int, default=5, help='Maximum number of retries for a request.')
     parser.add_argument('--timeout', type=int, default=600, help='Timeout for each request in seconds.')

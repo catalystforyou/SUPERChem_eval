@@ -1,4 +1,4 @@
-# SUPERChem demo data
+# SUPERChem offline ACC and DAG demo
 
 This folder contains a **small, runnable sample** for reviewers and new users. It is derived from the public release split of SUPERChem and pre-computed answers from **Gemini 2.5 Pro** (text-only, `high` reasoning effort).
 
@@ -18,11 +18,28 @@ This folder contains a **small, runnable sample** for reviewers and new users. I
 From the repository root:
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-offline.txt
 python demo/run_demo.py
 ```
 
-**Expected output (approximate):** pass@1 accuracy about **50% (5/10)** on the bundled Gemini 2.5 Pro answers; human baseline printed for the same items. Runtime on a normal desktop: **under 5 seconds** after dependencies are installed.
+**Expected output:** ACC **50% (5/10)**, RPF **0.516569**, node-only **0.599534**,
+branching factor **0.220613**, dangling count **0**. The script verifies hashes,
+UUID coverage and the values in `expected_metrics.json`. No API calls are made.
+The human demo statistic is the maximum score per question in the bundled human
+rows, not an individual student's mean or the paper's full human baseline.
+
+`precomputed_matches.jsonl` is a subset of historical match outputs selected by
+the existing 10 demo UUIDs; model answers and GT were checked against the source
+files. `dag_provenance.json` records source hashes. This demo is **not** the final
+revised-paper experiment, and a target model name does not identify the judge.
+
+To export per-question metrics and per-run means/sample variances:
+
+```bash
+python -m superchem metrics --manifest demo/manifest.json --output outputs/demo_metrics
+```
+
+Choose a new output directory when repeating the command.
 
 ## Using demo data with `DAG_eval` (API required)
 
