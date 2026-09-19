@@ -7,15 +7,21 @@ import os
 import re
 import time
 import random
+import sys
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import pandas as pd
-import requests
 import yaml
 from openai import OpenAI
 from tqdm import tqdm
 
 from validate_dag import validate_graph
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from superchem.mol_compare import (batch_compare, backend_name, backend_endpoint,
+                                  resolve_config as resolve_mol_config, validate_config as validate_mol_config,
+                                  ensure_output_backend)
 
 
 DEFAULT_CONFIG = {
@@ -27,6 +33,7 @@ DEFAULT_CONFIG = {
         }
     ],
     "mol_compare": {
+        "backend": "chemdraw",
         "url": "https://pkumdl.top/chemdraw/api/batch_mol_compare",
         "api_key": "your-api-key",
         "timeout": 15,
@@ -47,6 +54,9 @@ def exponential_backoff_with_jitter(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract and match model DAG.")
+    parser.add_argument('--config', type=str, default=None, help='YAML configuration (default: src/config.yaml)')
+    parser.add_argument('--mol-compare-backend', choices=['chemdraw','opsin'], default=None)
+    parser.add_argument('--opsin-jar', type=str, default=None, help='Override OPSIN JAR path (relative to current directory)')
     parser.add_argument("--questions", type=str, required=True)
     parser.add_argument("--answers", type=str, required=True)
     parser.add_argument("--ground-truth", type=str, required=True)
@@ -162,15 +172,7 @@ def batch_compare_molecules(url: str, api_key: str, pairs: List[Dict[str, str]],
     Returns:
         API response with results for all pairs
     """
-    headers = {
-        "accept": "application/json",
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-    payload = {"pairs": pairs}
-    response = requests.post(url, headers=headers, json=payload, timeout=timeout)
-    response.raise_for_status()
-    return response.json()
+    return batch_compare(pairs, {'backend':'chemdraw','url':url,'api_key':api_key,'timeout':timeout})
 
 
 def call_llm_with_tools(
@@ -187,7 +189,7 @@ def call_llm_with_tools(
             "type": "function",
             "function": {
                 "name": "batch_compare_molecules",
-                "description": "Batch compare multiple pairs of chemical entities to verify if they represent the same molecule. Supports: SMILES vs SMILES, IUPAC name vs IUPAC name, and SMILES vs IUPAC name (cross-format comparison). Use this when you need to verify whether chemical structures in the model answer match those in the ground truth.",
+                "description": "Batch compare chemical entities as SMILES or supported systematic names. The configured backend is " + backend_name(tool_cfg) + ". exact_match=null or an error means unresolved, not a mismatch; do not infer equivalence from an unresolved result or fingerprint similarity alone. OPSIN name recognition does not certify strict IUPAC compliance. Use when verifying chemical structures in model answers against ground truth.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -208,6 +210,14 @@ def call_llm_with_tools(
                                     "pair_id": {
                                         "type": "string",
                                         "description": "Unique identifier for this comparison pair (e.g., 'H1_vs_R2')"
+                                    },
+                                    "mol1_format": {
+                                        "type": "string", "enum": ["auto", "smiles", "iupac"],
+                                        "description": "Optional OPSIN format hint; auto tries strict SMILES first, then name parsing."
+                                    },
+                                    "mol2_format": {
+                                        "type": "string", "enum": ["auto", "smiles", "iupac"],
+                                        "description": "Optional OPSIN format hint, especially for strings ambiguous between SMILES and names."
                                     }
                                 },
                                 "required": ["mol1", "mol2", "pair_id"]
@@ -256,18 +266,13 @@ def call_llm_with_tools(
                     "tool_call_id": call.id,
                     "function_name": call.function.name,
                     "arguments": args,
-                    "api_endpoint": tool_cfg["url"],
+                    "api_endpoint": backend_endpoint(tool_cfg),
                     "timestamp": datetime.now().isoformat(),
                 }
                 
                 # Execute tool calls
                 start_time = time.time()
-                result = batch_compare_molecules(
-                    tool_cfg["url"],
-                    tool_cfg["api_key"],
-                    args["pairs"],
-                    tool_cfg.get("timeout", 15),
-                )
+                result = batch_compare(args["pairs"], tool_cfg)
                 elapsed_time = time.time() - start_time
                 
                 # Record complete call information
@@ -277,7 +282,8 @@ def call_llm_with_tools(
                         "function_name": call.function.name,
                         "request": {
                             "arguments": args,
-                            "api_endpoint": tool_cfg["url"],
+                            "api_endpoint": backend_endpoint(tool_cfg),
+                            "backend": backend_name(tool_cfg),
                             "num_pairs": len(args.get("pairs", [])),
                             "timestamp": request_info["timestamp"],
                         },
@@ -306,8 +312,9 @@ def call_llm_with_tools(
                         "tool_call_id": call.id,
                         "function_name": call.function.name,
                         "request": {
-                            "arguments": json.loads(call.function.arguments) if hasattr(call.function, "arguments") else {},
-                            "api_endpoint": tool_cfg["url"],
+                            "arguments_raw": getattr(call.function, 'arguments', ''),
+                            "api_endpoint": backend_endpoint(tool_cfg),
+                            "backend": backend_name(tool_cfg),
                             "timestamp": datetime.now().isoformat(),
                         },
                         "response": {
@@ -604,12 +611,12 @@ def main() -> None:
     args = parse_args()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(script_dir, "config.yaml")
+    config_path = os.path.abspath(args.config or os.path.join(script_dir, "config.yaml"))
     try:
         config = load_config(config_path)
     except FileNotFoundError as e:
         logger.error(str(e))
-        return
+        raise SystemExit(2)
 
     model_cfg = None
     for item in config.get("model_list", []):
@@ -618,12 +625,18 @@ def main() -> None:
             break
     if not model_cfg:
         logger.error("Model not found in config.yaml.")
-        return
+        raise SystemExit(2)
 
-    tool_cfg = config.get("mol_compare", {})
-    if not tool_cfg.get("url") or not tool_cfg.get("api_key"):
-        logger.error("mol_compare config is missing url or api_key.")
-        return
+    tool_cfg = dict(config.get('mol_compare', {}))
+    if args.mol_compare_backend: tool_cfg['backend'] = args.mol_compare_backend
+    if args.opsin_jar: tool_cfg['jar_path'] = str(Path(args.opsin_jar).resolve())
+    tool_cfg = resolve_mol_config(tool_cfg, Path(config_path).parent)
+    try:
+        validate_mol_config(tool_cfg)
+        ensure_output_backend(args.output, tool_cfg)
+    except (ValueError, RuntimeError, OSError) as exc:
+        logger.error(str(exc))
+        raise SystemExit(2)
 
     client = OpenAI(base_url=model_cfg["base_url"], api_key=model_cfg["api_key"])
     prompt_template = open(args.prompt, "r", encoding="utf-8").read()

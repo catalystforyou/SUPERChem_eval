@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 DEMO_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(DEMO_DIR.parent))
 ANSWERS_FILE = (
     DEMO_DIR
     / "20251014164938_questions_release_en_false__gemini-2_5-pro_high__1_0_1.jsonl"
@@ -82,16 +83,30 @@ def main() -> int:
     baseline = human_baseline_accuracy(valid_uuids)
     if baseline is not None:
         acc, correct, n = baseline
-        print(f"Human baseline      : {acc:.1f}% ({correct}/{n}) on same demo items")
+        print(f"Human demo best-per-item: {acc:.1f}% ({correct}/{n}); not an individual/student mean")
 
     print("\nPer-question results (uuid, score):")
     for uuid in sorted(scores):
         print(f"  {uuid}  score={scores[uuid][0]}")
 
-    print(
-        "\nDemo finished successfully. "
-        "For full-benchmark evaluation and RPF/DAG scoring, see the root README."
-    )
+    from superchem.offline import evaluate
+    import math
+    _, summaries = evaluate(DEMO_DIR / 'manifest.json')
+    expected = json.loads((DEMO_DIR / 'expected_metrics.json').read_text())
+    for actual, reference in zip(summaries, expected):
+        for key, value in reference.items():
+            if isinstance(value, (int, float)):
+                if not math.isclose(actual[key], value, rel_tol=1e-12, abs_tol=1e-12):
+                    raise ValueError(f'Demo regression in {key}: {actual[key]} != {value}')
+            elif actual[key] != value:
+                raise ValueError(f'Demo regression in {key}')
+    summary = summaries[0]
+    print('\nHistorical precomputed DAG example (not final manuscript results):')
+    print(f"RPF                 : {summary['rpf_mean']:.6f}")
+    print(f"Node-only           : {summary['node_only_mean']:.6f}")
+    print(f"Branching factor    : {summary['branching_factor_mean']:.6f}")
+    print(f"Dangling count      : {summary['dangling_count_mean']:.6f}")
+    print('\nDemo passed: hashes, UUID coverage and expected metric values verified. No API calls.')
     return 0
 
 

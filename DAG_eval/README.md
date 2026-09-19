@@ -1,5 +1,13 @@
 # DAG Evaluation
 
+**Revision status:** this directory documents the historical semantic
+validation/rematch pipeline. Revision handoff experiments use a separate protocol:
+combined answer extraction + GT match, with up to three recovery rounds for
+failed/structurally invalid outputs, not semantic rematching. Do not conflate them.
+The maintained offline formula implementation is `superchem/metrics.py`; run
+`python -m superchem metrics --manifest demo/manifest.json --output outputs/demo_metrics`
+from the repository root. See [release protocol](../docs/release_protocol.md).
+
 A framework for evaluating Large Language Model (LLM) reasoning capabilities in chemistry using Directed Acyclic Graphs (DAGs).
 
 ## Overview
@@ -81,11 +89,18 @@ cp src/config.example.yaml src/config.yaml
 
 Edit `src/config.yaml` with your model configurations:
 - `model_list`: List of LLM models with base_url and api_key
-- `mol_compare`: Configuration for molecule comparison API
+- `mol_compare`: Select `backend: chemdraw` (HTTP) or `backend: opsin` (local OPSIN/RDKit)
 
 ### Molecule Comparison Tool
 
-The `batch_mol_compare` tool is used to verify whether chemical structures in the model answer match those in the ground truth. For setting up your own molecule comparison service, please refer to: https://github.com/tom832/chemdraw-server
+The molecule-comparison tool verifies chemical structures in the model answer
+against the GT. ChemDraw HTTP service setup: https://github.com/tom832/chemdraw-server .
+An open-source **OPSIN 2.9.0 + RDKit** backend is now available without that service.
+From the repository root, install `requirements-mol.txt`, run
+`python script/install_opsin.py`, then choose `mol_compare.backend: opsin` or
+`--mol-compare-backend opsin`. Use a new output filename when switching backend.
+Full installation, examples, equivalence policy, limitations and tests:
+[docs/mol_compare.md](../docs/mol_compare.md).
 
 ## Usage
 
@@ -178,4 +193,3 @@ streamlit run dag_viewer.py
 - `nodes`: Extracted reasoning nodes
 - `edges`: Reasoning dependencies
 - `matches`: Node-to-node mappings between LLM and ground truth
-

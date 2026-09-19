@@ -1,0 +1,2 @@
+# Optional local name/structure comparison; independent of the LLM API SDK.
+rdkit>=2024.9,<2027

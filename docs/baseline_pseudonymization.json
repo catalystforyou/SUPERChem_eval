@@ -1,0 +1,21 @@
+{
+  "scope": "Current CSV files only; not historical Git objects or old archives",
+  "mapping_published": false,
+  "score_answer_and_question_fields_unchanged": true,
+  "files": [
+    {
+      "path": "data/20251015_baseline.csv",
+      "rows": 870,
+      "participants": 174,
+      "before_sha256": "2e70e0761c4db7972f5266591715d3e6515b38fe9994947972fe595e45b09462",
+      "after_sha256": "b06aa2fe0b047c28ce644d1d9f353580601d863bf7254adfe33284a423fdb29d"
+    },
+    {
+      "path": "demo/20251015_baseline_demo.csv",
+      "rows": 13,
+      "participants": 13,
+      "before_sha256": "8976d7139b0668598aa9303e11e0d00105963ba1598234a5c60e747a18f41524",
+      "after_sha256": "78e75a299f6052e659db4f90bf99d341f10d6c756a783881173356663a095f23"
+    }
+  ]
+}

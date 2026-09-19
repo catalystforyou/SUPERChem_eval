@@ -1,0 +1,20 @@
+[
+  {
+    "config_id": "gemini-2_5-pro_high__text",
+    "replicate": 1,
+    "n": 10,
+    "valid_dags": 10,
+    "accuracy_mean": 0.5,
+    "accuracy_sample_variance": 0.2777777777777778,
+    "rpf_mean": 0.5165690774742498,
+    "rpf_sample_variance": 0.14983375426295376,
+    "node_only_mean": 0.5995342588446037,
+    "node_only_sample_variance": 0.14448904416802869,
+    "logic_penalty_mean": 0.08296518137035377,
+    "logic_penalty_sample_variance": 0.0072891346292163475,
+    "branching_factor_mean": 0.22061258916522075,
+    "branching_factor_sample_variance": 0.0452180919218243,
+    "dangling_count_mean": 0,
+    "dangling_count_sample_variance": 0
+  }
+]

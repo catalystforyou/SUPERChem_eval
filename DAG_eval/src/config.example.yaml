@@ -7,6 +7,12 @@ model_list:
     api_key: api_key2
 
 mol_compare:
+  # Omit backend to preserve the historical ChemDraw default.
+  # Set backend: opsin to use local open-source comparison (no tool API key).
+  backend: chemdraw
   url: xxx_url/chemdraw/api/batch_mol_compare
   api_key: xxx_api_key
-  timeout: 15
+  timeout: 30
+  # OPSIN paths are relative to this YAML file; also supports OPSIN_JAR env var.
+  jar_path: ../../tools/opsin/opsin-cli-2.9.0-jar-with-dependencies.jar
+  java: java
